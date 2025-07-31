@@ -56,8 +56,18 @@ export async function getAllWorkExperiences(): Promise<WorkExperience[]> {
       })
   );
 
-  // Sort work experiences by order (ascending)
-  return allWorkData.sort((a, b) => a.order - b.order);
+  // Sort work experiences by end date (most recent first)
+  return allWorkData.sort((a, b) => {
+    // Handle "present" as the most recent date
+    if (a.endDate === "present" && b.endDate === "present") return 0;
+    if (a.endDate === "present") return -1;
+    if (b.endDate === "present") return 1;
+
+    // Parse dates and sort in descending order (most recent first)
+    const dateA = new Date(a.endDate);
+    const dateB = new Date(b.endDate);
+    return dateB.getTime() - dateA.getTime();
+  });
 }
 
 export async function getWorkExperience(
@@ -103,18 +113,23 @@ export function getAllWorkSlugs(): string[] {
 
 export function formatDateRange(startDate: string, endDate: string): string {
   const start = new Date(startDate);
-  const startYear = start.getFullYear();
+  const startMonth = start.toLocaleDateString("en-US", { month: "short" });
+  const startYear = start.getFullYear().toString().slice(-2);
 
   if (endDate === "present") {
-    return `${startYear} - present`;
+    return `${startMonth} ${startYear} - present`;
   }
 
   const end = new Date(endDate);
-  const endYear = end.getFullYear();
+  const endMonth = end.toLocaleDateString("en-US", { month: "short" });
+  const endYear = end.getFullYear().toString().slice(-2);
 
-  if (startYear === endYear) {
-    return startYear.toString();
+  const startFormatted = `${startMonth} ${startYear}`;
+  const endFormatted = `${endMonth} ${endYear}`;
+
+  if (startFormatted === endFormatted) {
+    return startFormatted;
   }
 
-  return `${startYear} - ${endYear}`;
+  return `${startFormatted} - ${endFormatted}`;
 }

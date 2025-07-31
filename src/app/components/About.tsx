@@ -1,10 +1,17 @@
 const About = () => {
   return (
-    <div className="flex flex-col justify-start items-center pt-20">
+    <div
+      className="flex flex-col justify-start items-center pt-20 pb-20"
+      id="about"
+    >
       <div className="">
         <p
-          className="font-light text-gray-600 dark:text-gray-400"
-          style={{ fontSize: "18px" }}
+          className="font-light text-gray-600 dark:text-gray-400 opacity-0 animate-fadeIn"
+          style={{
+            fontSize: "18px",
+            animationDelay: "200ms",
+            animationFillMode: "forwards",
+          }}
         >
           I&apos;m an{" "}
           <span className="font-medium text-gray-900 dark:text-white">

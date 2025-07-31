@@ -32,6 +32,22 @@ body {
   overflow: hidden; /* Prevent body scroll since we handle scrolling in the right column */
 }
 
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
 /* Line clamp utilities */
 .line-clamp-2 {
   display: -webkit-box;

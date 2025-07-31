@@ -12,7 +12,7 @@ const WorkExperienceCard = ({
   const dateRange = formatDateRange(experience.startDate, experience.endDate);
 
   return (
-    <div className="grid grid-cols-[200px_1fr] gap-8">
+    <div className="grid grid-cols-[150px_1fr] gap-8">
       {/* Left column - Date only */}
       <div className="text-sm text-gray-600 dark:text-gray-400">
         {dateRange}

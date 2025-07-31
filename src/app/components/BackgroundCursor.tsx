@@ -28,8 +28,8 @@ const BackgroundCursor: React.FC<BackgroundCursorProps> = ({
 
   // Define colors based on theme
   const colors = isDarkMode
-    ? { bg1: "#111", bg2: "#111" } // Dark mode colors (original)
-    : { bg1: "#fff", bg2: "#fff" }; // Light mode colors (slightly darker than background)
+    ? { bg1: "#111", bg2: "#222" } // Dark mode colors (original)
+    : { bg1: "#fff", bg2: "#eee" }; // Light mode colors (slightly darker than background)
 
   const [el, bg] = useBackgroundCursorPosition(colors.bg1, colors.bg2, "400px");
 

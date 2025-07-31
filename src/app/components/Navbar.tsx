@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useCurrentPage } from "./ScrollDetector";
 
 interface NavItem {
   label: string;
@@ -9,14 +10,17 @@ interface NavItem {
 }
 
 interface NavbarProps {
-  currentPage?: string; // Used to determine which nav item is selected
+  currentPage?: string; // Keep for backwards compatibility, but use context when available
 }
 
-const Navbar = ({ currentPage = "" }: NavbarProps) => {
+const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
+  const contextCurrentPage = useCurrentPage();
+  const currentPage = contextCurrentPage || propCurrentPage || "";
+
   const navItems: NavItem[] = [
     {
       label: "ABOUT",
-      href: "/",
+      href: "/#about",
       isSelected: currentPage === "" || currentPage === "about",
     },
     {

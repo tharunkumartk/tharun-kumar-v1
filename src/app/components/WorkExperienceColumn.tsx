@@ -5,14 +5,50 @@ export default async function WorkExperienceColumn() {
   const workExperiences = await getAllWorkExperiences();
 
   return (
-    <div className="flex flex-col space-y-8">
-      {workExperiences.map((experience) => (
-        <WorkExperienceCard
+    <div id="experience" className="flex flex-col space-y-8 pt-20">
+      {workExperiences.slice(0, 3).map((experience, index) => (
+        <div
           key={experience.slug}
-          experience={experience}
-          showViewMore={true}
-        />
+          className="opacity-0 animate-fadeIn"
+          style={{
+            animationDelay: `${index * 200}ms`,
+            animationFillMode: "forwards",
+          }}
+        >
+          <WorkExperienceCard experience={experience} showViewMore={true} />
+        </div>
       ))}
+
+      <div
+        className="flex mt-8 opacity-0 animate-fadeIn justify-end"
+        style={{
+          animationDelay: `${3 * 200}ms`,
+          animationFillMode: "forwards",
+        }}
+      >
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-gray-900 dark:text-gray-100 bg-transparent  dark:border-gray-600 rounded-md  dark:hover:border-gray-500 transition-all duration-200 ease-in-out"
+        >
+          View Full Resume
+          <svg
+            className="ml-2 w-4 h-4 transition-transform duration-200 ease-in-out group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   );
 }
