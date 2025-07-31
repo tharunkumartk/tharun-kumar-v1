@@ -3,7 +3,7 @@ const About = () => {
     <div className="flex flex-col justify-start items-center pt-20">
       <div className="">
         <p
-          className="font-light text-gray-700 dark:text-gray-300"
+          className="font-light text-gray-600 dark:text-gray-400"
           style={{ fontSize: "18px" }}
         >
           I&apos;m an{" "}

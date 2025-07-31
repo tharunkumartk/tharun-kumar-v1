@@ -1,28 +1,74 @@
+"use client";
+
 import Link from "next/link";
 
-const Navbar = () => {
-  const navItems = [
-    { href: "#about", label: "about me" },
-    { href: "#work", label: "work" },
-    { href: "#projects", label: "projects" },
-    { href: "#resume", label: "resume" },
-    { href: "/blog", label: "blog" },
+interface NavItem {
+  label: string;
+  href: string;
+  isSelected?: boolean;
+}
+
+interface NavbarProps {
+  currentPage?: string; // Used to determine which nav item is selected
+}
+
+const Navbar = ({ currentPage = "" }: NavbarProps) => {
+  const navItems: NavItem[] = [
+    {
+      label: "ABOUT",
+      href: "/",
+      isSelected: currentPage === "" || currentPage === "about",
+    },
+    {
+      label: "EXPERIENCE",
+      href: "#experience",
+      isSelected: currentPage === "experience",
+    },
+    {
+      label: "PROJECTS",
+      href: "#projects",
+      isSelected: currentPage === "projects",
+    },
+    {
+      label: "BLOG",
+      href: "/blog",
+      isSelected: currentPage === "blog",
+    },
   ];
 
   return (
-    <nav className="absolute top-5 right-5 z-50">
-      <ul className="flex items-center space-x-4">
-        {navItems.map((item) => (
-          <li key={item.href}>
+    <nav className="z-50 bg-transparent">
+      <div className="flex py-8">
+        <div className="flex flex-col space-y-6">
+          {navItems.map((item) => (
             <Link
+              key={item.label}
               href={item.href}
-              className="text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200 text-sm font-medium px-3 py-2 rounded-md"
+              className="group relative flex items-center justify-start"
             >
-              {item.label}
+              {/* Line indicator */}
+              <div className="relative mr-4 w-12">
+                <div
+                  className={`h-px bg-black dark:bg-white transition-all duration-300 ease-out origin-left ${
+                    item.isSelected ? "w-12" : "w-6 group-hover:w-12"
+                  }`}
+                />
+              </div>
+
+              {/* Text */}
+              <span
+                className={`text-sm font-medium tracking-wide transition-all duration-300 ${
+                  item.isSelected
+                    ? "text-black dark:text-white opacity-100"
+                    : "text-black dark:text-white opacity-60 group-hover:opacity-100"
+                }`}
+              >
+                {item.label}
+              </span>
             </Link>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 };
