@@ -1,5 +1,5 @@
 import { getAllWorkExperiences } from "@/lib/work";
-import WorkExperienceCard from "./WorkExperience";
+import WorkExperienceCard from "@/app/components/landing/WorkExperience";
 
 export default async function WorkExperienceColumn() {
   const workExperiences = await getAllWorkExperiences();
@@ -11,7 +11,7 @@ export default async function WorkExperienceColumn() {
           key={experience.slug}
           className="opacity-0 animate-fadeIn"
           style={{
-            animationDelay: `${index * 200}ms`,
+            animationDelay: `${index * 100 + 200}ms`,
             animationFillMode: "forwards",
           }}
         >
@@ -20,9 +20,9 @@ export default async function WorkExperienceColumn() {
       ))}
 
       <div
-        className="flex mt-8 opacity-0 animate-fadeIn justify-end"
+        className="flex mt-8 opacity-0 animate-fadeIn justify-start"
         style={{
-          animationDelay: `${3 * 200}ms`,
+          animationDelay: `${2 * 200}ms`,
           animationFillMode: "forwards",
         }}
       >

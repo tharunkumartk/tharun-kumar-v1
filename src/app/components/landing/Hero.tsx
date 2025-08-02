@@ -19,7 +19,7 @@ const Hero = () => {
         className="font-regular transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
         style={{
           fontSize: "22px",
-          animationDelay: "200ms",
+          animationDelay: "100ms",
           animationFillMode: "forwards",
         }}
       >
@@ -31,7 +31,7 @@ const Hero = () => {
         className="mt-4 text-gray-600 dark:text-gray-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
         style={{
           fontSize: "18px",
-          animationDelay: "400ms",
+          animationDelay: "200ms",
           animationFillMode: "forwards",
         }}
       >
@@ -43,7 +43,7 @@ const Hero = () => {
         href="/blog"
         className="mt-6 inline-flex items-center justify-center rounded-md bg-gray-900 dark:bg-gray-100 px-4 py-2 text-sm font-medium text-white dark:text-gray-900 shadow transition-colors hover:bg-gray-800 dark:hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 disabled:pointer-events-none disabled:opacity-50 opacity-0 animate-fadeIn"
         style={{
-          animationDelay: "600ms",
+          animationDelay: "300ms",
           animationFillMode: "forwards",
         }}
       >

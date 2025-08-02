@@ -1,78 +1,108 @@
-import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
 import { notFound } from "next/navigation";
+import Image from "next/image";
+import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
+import {
+  estimateReadTime,
+  formatDate,
+} from "@/app/components/blog/blog-post-cards/BlogPostCardProps";
+import BackButton from "@/app/components/blog/BackButton";
+import MarkdownContent from "@/app/components/blog/MarkdownContent";
 
 interface BlogPostPageProps {
-  params: Promise<{ slug: string }>;
+  params: {
+    slug: string;
+  };
 }
 
 export async function generateStaticParams() {
   const slugs = getAllBlogSlugs();
   return slugs.map((slug) => ({
-    slug: slug,
+    slug,
   }));
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const post = await getBlogPost(params.slug);
 
   if (!post) {
     notFound();
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-6">
-        <a
-          href="/blog"
-          className="text-blue-500 hover:text-blue-700 mb-4 inline-block"
-        >
-          ← Back to Blog
-        </a>
-      </div>
-
-      <div className="border border-gray-300 rounded-lg p-6 bg-white shadow-sm">
-        <div className="mb-6">
-          <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-            <div>
-              <strong>Slug:</strong> {post.slug}
-            </div>
-            <div>
-              <strong>Timestamp:</strong>{" "}
-              {new Date(post.timestamp).toLocaleString()}
-            </div>
-            <div>
-              <strong>Image URL:</strong> {post.imageUrl}
-            </div>
-            <div>
-              <strong>Tags:</strong> {post.tags.join(", ")}
-            </div>
+    <main className="min-h-screen overflow-y-auto">
+      <div className="max-w-4xl mx-auto px-8 md:px-12 lg:px-16 py-16 space-y-16">
+        <div className="flex items-center justify-between mb-16">
+          <BackButton />
+        </div>
+        <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-row text-xs sm:text-sm text-gray-600 dark:text-gray-400 space-x-4 mt-auto ">
+            <span>{formatDate(post.timestamp)}</span>
+            <span>{estimateReadTime(post.content)} min read</span>
+          </div>
+          <h1
+            className="font-regular text-gray-900 dark:text-gray-100 mb-2 opacity-0 animate-fadeIn text-center"
+            style={{
+              fontSize: "60px",
+              animationDelay: "0ms",
+              animationFillMode: "forwards",
+            }}
+          >
+            {post.title}
+          </h1>
+          <div
+            className="mt-4 text-gray-600 dark:text-gray-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn text-center max-w-3xl "
+            style={{
+              fontSize: "18px",
+              animationDelay: "200ms",
+              animationFillMode: "forwards",
+            }}
+          >
+            {post.summary}
           </div>
         </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold text-xl mb-3">Summary:</h2>
-          <p className="text-gray-700 bg-blue-50 p-4 rounded border-l-4 border-blue-200">
-            {post.summary}
-          </p>
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold text-xl mb-3">Content:</h2>
-          <div
-            className="prose max-w-none bg-gray-50 p-6 rounded border"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+        <div className="flex flex-col items-center justify-center">
+          <Image
+            src={post.imageUrl}
+            alt={post.title}
+            width={800}
+            height={400}
+            className="rounded-xl flex-shrink-0 w-full h-[400px] object-cover opacity-0 animate-fadeIn"
+            style={{
+              animationDelay: "400ms",
+              animationFillMode: "forwards",
+            }}
           />
         </div>
-
-        <div className="border-t pt-6">
-          <h2 className="font-semibold text-xl mb-3">Raw Data Dump:</h2>
-          <pre className="bg-gray-100 p-4 rounded text-xs overflow-auto">
-            {JSON.stringify(post, null, 2)}
-          </pre>
+        <div
+          className="opacity-0 animate-fadeIn"
+          style={{
+            animationDelay: "600ms",
+            animationFillMode: "forwards",
+          }}
+        >
+          <MarkdownContent content={post.content} />
         </div>
       </div>
-    </div>
+    </main>
   );
+}
+
+export async function generateMetadata({ params }: BlogPostPageProps) {
+  const post = await getBlogPost(params.slug);
+
+  if (!post) {
+    return {
+      title: "Blog Post Not Found",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.summary,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      images: [post.imageUrl],
+    },
+  };
 }

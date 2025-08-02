@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCurrentPage } from "./ScrollDetector";
+import { useCurrentPage } from "@/app/components/landing/ScrollDetector";
 
 interface NavItem {
   label: string;

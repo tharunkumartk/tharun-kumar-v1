@@ -9,7 +9,7 @@ const About = () => {
           className="font-light text-gray-600 dark:text-gray-400 opacity-0 animate-fadeIn"
           style={{
             fontSize: "18px",
-            animationDelay: "200ms",
+            animationDelay: "100ms",
             animationFillMode: "forwards",
           }}
         >

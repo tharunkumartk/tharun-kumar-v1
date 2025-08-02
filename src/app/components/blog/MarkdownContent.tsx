@@ -1,0 +1,182 @@
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
+import Image from "next/image";
+import "highlight.js/styles/github-dark.css";
+
+interface MarkdownContentProps {
+  content: string;
+}
+
+export default function MarkdownContent({ content }: MarkdownContentProps) {
+  return (
+    <div className="prose prose-lg dark:prose-invert max-w-none">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeHighlight]}
+        components={{
+          // Headings
+          h1: ({ children }) => (
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-12 mb-6 first:mt-0">
+              {children}
+            </h1>
+          ),
+          h2: ({ children }) => (
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mt-10 mb-5">
+              {children}
+            </h2>
+          ),
+          h3: ({ children }) => (
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mt-8 mb-4">
+              {children}
+            </h3>
+          ),
+          h4: ({ children }) => (
+            <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-3">
+              {children}
+            </h4>
+          ),
+          h5: ({ children }) => (
+            <h5 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-3">
+              {children}
+            </h5>
+          ),
+          h6: ({ children }) => (
+            <h6 className="text-base font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-3">
+              {children}
+            </h6>
+          ),
+
+          // Paragraphs
+          p: ({ children }) => (
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-lg">
+              {children}
+            </p>
+          ),
+
+          // Lists
+          ul: ({ children }) => (
+            <ul className="list-disc list-inside mb-6 space-y-2 text-gray-700 dark:text-gray-300">
+              {children}
+            </ul>
+          ),
+          ol: ({ children }) => (
+            <ol className="list-decimal list-inside mb-6 space-y-2 text-gray-700 dark:text-gray-300">
+              {children}
+            </ol>
+          ),
+          li: ({ children }) => (
+            <li className="text-lg leading-relaxed">{children}</li>
+          ),
+
+          // Links
+          a: ({ href, children }) => (
+            <a
+              href={href}
+              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {children}
+            </a>
+          ),
+
+          // Emphasis
+          strong: ({ children }) => (
+            <strong className="font-bold text-gray-900 dark:text-gray-100">
+              {children}
+            </strong>
+          ),
+          em: ({ children }) => (
+            <em className="italic text-gray-800 dark:text-gray-200">
+              {children}
+            </em>
+          ),
+
+          // Code
+          code: ({ className, children, ...props }) => {
+            const match = /language-(\w+)/.exec(className || "");
+            return match ? (
+              <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto mb-6">
+                <code className={className} {...props}>
+                  {children}
+                </code>
+              </pre>
+            ) : (
+              <code
+                className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm font-mono"
+                {...props}
+              >
+                {children}
+              </code>
+            );
+          },
+
+          // Blockquotes
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-6 py-2 my-6 bg-gray-50 dark:bg-gray-800/50 rounded-r-lg">
+              <div className="text-gray-700 dark:text-gray-300 italic">
+                {children}
+              </div>
+            </blockquote>
+          ),
+
+          // Horizontal rule
+          hr: () => (
+            <hr className="border-gray-300 dark:border-gray-600 my-8" />
+          ),
+
+          // Images
+          img: ({ src, alt }) => (
+            <div className="my-8">
+              <Image
+                src={src || ""}
+                alt={alt || ""}
+                width={800}
+                height={400}
+                className="rounded-lg shadow-lg w-full object-cover"
+              />
+              {alt && (
+                <p className="text-center text-gray-500 dark:text-gray-400 text-sm mt-2 italic">
+                  {alt}
+                </p>
+              )}
+            </div>
+          ),
+
+          // Tables
+          table: ({ children }) => (
+            <div className="overflow-x-auto my-6">
+              <table className="min-w-full border border-gray-300 dark:border-gray-600">
+                {children}
+              </table>
+            </div>
+          ),
+          thead: ({ children }) => (
+            <thead className="bg-gray-100 dark:bg-gray-800">{children}</thead>
+          ),
+          tbody: ({ children }) => (
+            <tbody className="bg-white dark:bg-gray-900">{children}</tbody>
+          ),
+          tr: ({ children }) => (
+            <tr className="border-b border-gray-300 dark:border-gray-600">
+              {children}
+            </tr>
+          ),
+          th: ({ children }) => (
+            <th className="px-4 py-2 text-left font-semibold text-gray-900 dark:text-gray-100">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="px-4 py-2 text-gray-700 dark:text-gray-300">
+              {children}
+            </td>
+          ),
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+}
