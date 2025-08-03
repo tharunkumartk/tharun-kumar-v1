@@ -1,6 +1,7 @@
 ---
-date: '1'
+timestamp: "2024-10-15T00:00:00Z"
 title: 'Brainfeed - a productive feed'
+slug: 'brainfeed'
 cover: './BrainFeedSS.png'
 github: 'https://github.com/tharunkumartk/brainfeed-ios'
 tech:
