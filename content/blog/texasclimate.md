@@ -2,7 +2,7 @@
 title: "Energy Resource Optimization"
 timestamp: "2022-03-15T00:00:00Z"
 tags: ["climate-science", "machine-learning", "data-visualization", "renewable-energy", "python"]
-imageUrl: "/images/blog/blog-3.png"
+imageUrl: "/images/blog/blog-4.png"
 summary: "Analyzing Texas climate data through machine learning to design a regionalized renewable power grid. Inspired by the devastating 2021 winter storm, this research explores solutions that could reduce carbon emissions by 40%."
 ---
 

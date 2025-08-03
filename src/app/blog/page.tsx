@@ -8,14 +8,14 @@ export default async function BlogPage() {
 
   return (
     <>
-      <div className="h-screen flex flex-col">
+      <div className="min-h-screen">
         {/* Header with Back Button */}
-        <div className="flex items-center justify-between p-4 max-w-4xl mx-auto w-full">
+        <div className="flex items-center justify-between pt-16 px-4 max-w-4xl mx-auto w-full">
           <BackButton href="/" title="Home" />
         </div>
 
-        {/* Main Content - Centered */}
-        <div className="flex-1 flex items-center justify-center px-8 overflow-y-auto">
+        {/* Main Content */}
+        <div className="px-8 pb-16">
           <div className="max-w-4xl mx-auto w-full">
             {/* Blog Header */}
             <div className="mb-12 text-center">
@@ -42,7 +42,7 @@ export default async function BlogPage() {
             </div>
 
             {/* Blog Posts Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
               {blogPosts.map((post, index) => (
                 <div
                   key={post.slug + index}
@@ -59,7 +59,7 @@ export default async function BlogPage() {
           </div>
         </div>
 
-        {/* Footer at Bottom */}
+        {/* Footer */}
         <div className="px-8">
           <div className="max-w-4xl mx-auto">
             <FooterColumn />

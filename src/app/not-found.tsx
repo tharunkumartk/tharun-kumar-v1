@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <div className="h-screen flex flex-col">
       {/* Header with Back Button */}
-      <div className="flex items-center justify-between p-4 max-w-4xl mx-auto w-full">
+      <div className="flex items-center justify-between pt-16 px-4 max-w-4xl mx-auto w-full">
         <BackButton href="/" title="Home" />
       </div>
 
