@@ -1,11 +1,13 @@
 import Hero from "./components/landing/Hero";
-import About from "./components/landing/About";
+import AboutColumn from "./components/landing/AboutColumn";
 import WorkExperienceColumn from "./components/landing/WorkExperienceColumn";
 import Navbar from "./components/landing/Navbar";
 import SocialIcons from "./components/landing/SocialIcons";
 import ScrollDetector from "./components/landing/ScrollDetector";
 import BlogColumn from "./components/landing/BlogColumn";
 import ProjectColumn from "./components/landing/ProjectColumn";
+import MeetingNewPeopleColumn from "./components/landing/MeetingNewPeopleColumn";
+import FooterColumn from "./components/landing/FooterColumn";
 
 export default async function Home() {
   return (
@@ -23,10 +25,12 @@ export default async function Home() {
         {/* Scrollable Right Column */}
         <div className="ml-[50%] w-1/2 pr-16">
           <div className="min-h-screen px-8">
-            <About />
+            <AboutColumn />
             <WorkExperienceColumn />
             <ProjectColumn />
             <BlogColumn />
+            <MeetingNewPeopleColumn />
+            <FooterColumn />
           </div>
         </div>
       </div>

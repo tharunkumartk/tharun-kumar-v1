@@ -5,7 +5,7 @@ export default async function ProjectColumn() {
   const projects = await getAllProjects();
 
   return (
-    <div id="projects" className="flex flex-col space-y-8 pt-20">
+    <div id="projects" className="flex flex-col space-y-8 pt-20 pb-20">
       {projects.slice(0, 3).map((project, index) => (
         <div
           key={project.slug}

@@ -1,4 +1,4 @@
-const About = () => {
+const AboutColumn = () => {
   return (
     <div
       className="flex flex-col justify-start items-center pt-20 pb-20"
@@ -74,4 +74,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutColumn;

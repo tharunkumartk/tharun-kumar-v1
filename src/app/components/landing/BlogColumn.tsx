@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function WorkExperienceColumn() {
   const blogPosts = await getAllBlogPosts();
   return (
-    <div id="blog" className="flex flex-col space-y-8 pt-20">
+    <div id="blog" className="flex flex-col space-y-8 pt-20 pb-20">
       {blogPosts.slice(0, 3).map((blog, index) => (
         <div
           key={blog.slug}
