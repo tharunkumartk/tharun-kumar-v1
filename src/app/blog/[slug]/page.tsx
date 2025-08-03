@@ -4,6 +4,7 @@ import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
 import { estimateReadTime, formatDate } from "@/lib/utils";
 import BackButton from "@/app/components/blog/BackButton";
 import MarkdownContent from "@/app/components/blog/MarkdownContent";
+import FooterColumn from "@/app/components/landing/FooterColumn";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -80,6 +81,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         >
           <MarkdownContent content={post.content} />
         </div>
+        <FooterColumn />
       </div>
     </main>
   );

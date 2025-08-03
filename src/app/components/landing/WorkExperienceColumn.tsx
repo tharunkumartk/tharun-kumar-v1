@@ -5,7 +5,13 @@ export default async function WorkExperienceColumn() {
   const workExperiences = await getAllWorkExperiences();
 
   return (
-    <div id="experience" className="flex flex-col space-y-8 pt-20 pb-20">
+    <div
+      id="experience"
+      className="flex flex-col space-y-8 pt-10 lg:pt-20 pb-10 lg:pb-20"
+    >
+      <h2 className="text-md font-medium text-stone-900 dark:text-stone-100 block xl:hidden mb-4">
+        EXPERIENCE
+      </h2>
       {workExperiences.slice(0, 3).map((experience, index) => (
         <div
           key={experience.slug}

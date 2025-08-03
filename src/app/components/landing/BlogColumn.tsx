@@ -5,7 +5,13 @@ import Link from "next/link";
 export default async function WorkExperienceColumn() {
   const blogPosts = await getAllBlogPosts();
   return (
-    <div id="blog" className="flex flex-col space-y-8 pt-20 pb-20">
+    <div
+      id="blog"
+      className="flex flex-col space-y-8 pt-10 lg:pt-20 pb-10 lg:pb-20"
+    >
+      <h2 className="text-md font-medium text-stone-900 dark:text-stone-100 block xl:hidden mb-4">
+        BLOG
+      </h2>
       {blogPosts.slice(0, 3).map((blog, index) => (
         <div
           key={blog.slug}
@@ -20,7 +26,7 @@ export default async function WorkExperienceColumn() {
       ))}
 
       <div
-        className="flex mt-8 opacity-0 animate-fadeIn justify-end"
+        className="flex mt-8 opacity-0 animate-fadeIn justify-start"
         style={{
           animationDelay: `${2 * 200}ms`,
           animationFillMode: "forwards",

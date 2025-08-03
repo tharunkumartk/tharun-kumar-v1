@@ -12,19 +12,22 @@ import FooterColumn from "./components/landing/FooterColumn";
 export default async function Home() {
   return (
     <ScrollDetector>
-      <div className="flex h-screen">
-        {/* Fixed Left Column */}
-        <div className="fixed left-0 top-0 w-1/2 h=[100vh] z-10 pl-32 px-16 py-20 space-y-20">
+      <div className="flex flex-col md:flex-row md:h-screen">
+        {/* Fixed Left Column on md+, stacked on smaller screens */}
+        <div className="relative w-full px-8 py-8 space-y-8 md:fixed md:left-0 md:top-0 md:w-1/2 md:h-[100vh] md:z-10 md:pl-32 md:px-16 md:py-20 md:space-y-20">
           <Hero />
-          <Navbar />
-          <div className="mt-30">
+          {/* Hide Navbar on md and smaller screens */}
+          <div className="hidden md:block">
+            <Navbar />
+          </div>
+          <div className="md:mt-30">
             <SocialIcons />
           </div>
         </div>
 
         {/* Scrollable Right Column */}
-        <div className="ml-[50%] w-1/2 pr-16">
-          <div className="min-h-screen px-8">
+        <div className="w-full ml-0 px-8 md:ml-[50%] md:w-1/2 md:pr-16">
+          <div className="min-h-screen md:px-8">
             <AboutColumn />
             <WorkExperienceColumn />
             <ProjectColumn />
