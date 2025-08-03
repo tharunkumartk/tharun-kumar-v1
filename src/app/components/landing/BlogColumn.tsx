@@ -1,5 +1,6 @@
 import { getAllBlogPosts } from "@/lib/blog";
 import BlogPostCardHorizontal from "@/app/components/blog/blog-post-cards/BlogPostCardHorizontal";
+import Link from "next/link";
 
 export default async function WorkExperienceColumn() {
   const blogPosts = await getAllBlogPosts();
@@ -25,9 +26,9 @@ export default async function WorkExperienceColumn() {
           animationFillMode: "forwards",
         }}
       >
-        <a
+        <Link
           href="/blog"
-          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-gray-900 dark:text-gray-100 bg-transparent  dark:border-gray-600 rounded-md  dark:hover:border-gray-500 transition-all duration-200 ease-in-out"
+          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-stone-900 dark:text-stone-100 bg-transparent  dark:border-stone-600 rounded-md  dark:hover:border-stone-500 transition-all duration-200 ease-in-out"
         >
           View All
           <svg
@@ -44,7 +45,7 @@ export default async function WorkExperienceColumn() {
               d="M9 5l7 7-7 7"
             />
           </svg>
-        </a>
+        </Link>
       </div>
     </div>
   );

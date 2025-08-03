@@ -73,7 +73,13 @@ const SocialIcons = () => {
   ];
 
   return (
-    <div className="flex items-center space-x-6">
+    <div
+      className="flex items-center space-x-6 opacity-0 animate-fadeIn"
+      style={{
+        animationDelay: "500ms",
+        animationFillMode: "forwards",
+      }}
+    >
       {socialItems.map((item) => (
         <Link
           key={item.label}
@@ -83,7 +89,7 @@ const SocialIcons = () => {
           className="group relative flex items-center justify-center"
           aria-label={item.label}
         >
-          <div className="text-gray-500 transition-colors duration-300 ease-out group-hover:text-black dark:group-hover:text-white">
+          <div className="text-stone-500 transition-colors duration-300 ease-out group-hover:text-black dark:group-hover:text-white">
             {item.icon}
           </div>
         </Link>

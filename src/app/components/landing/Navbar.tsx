@@ -41,7 +41,13 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
   ];
 
   return (
-    <nav className="z-50 bg-transparent">
+    <nav
+      className="z-50 bg-transparent opacity-0 animate-fadeIn"
+      style={{
+        animationDelay: "400ms",
+        animationFillMode: "forwards",
+      }}
+    >
       <div className="flex py-8">
         <div className="flex flex-col space-y-6">
           {navItems.map((item) => (

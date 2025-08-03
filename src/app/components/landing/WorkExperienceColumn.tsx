@@ -15,7 +15,7 @@ export default async function WorkExperienceColumn() {
             animationFillMode: "forwards",
           }}
         >
-          <WorkExperienceCard experience={experience} showViewMore={true} />
+          <WorkExperienceCard experience={experience} />
         </div>
       ))}
 
@@ -30,7 +30,7 @@ export default async function WorkExperienceColumn() {
           href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-gray-900 dark:text-gray-100 bg-transparent  dark:border-gray-600 rounded-md  dark:hover:border-gray-500 transition-all duration-200 ease-in-out"
+          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-stone-900 dark:text-stone-100 bg-transparent  dark:border-stone-600 rounded-md  dark:hover:border-stone-500 transition-all duration-200 ease-in-out"
         >
           View Full Resume
           <svg

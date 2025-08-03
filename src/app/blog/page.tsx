@@ -7,19 +7,20 @@ export default async function BlogPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-8 py-16">
+      <div className="min-h-screen bg-stone-50 dark:bg-stone-900 py-16">
+        <div className="flex items-center justify-between mb-4 max-w-4xl mx-auto">
+          <BackButton href="/" title="Home" />
+        </div>
+
+        <div className="max-w-4xl mx-auto px-8">
           {/* Back to Home Button */}
-          <div className="flex items-center justify-between mb-16">
-            <BackButton />
-          </div>
 
           {/* Blog Header */}
           <div className="mb-12">
             <h1
-              className="font-bold text-gray-900 dark:text-gray-100 mb-2 opacity-0 animate-fadeIn"
+              className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn"
               style={{
-                fontSize: "45px",
+                fontSize: "65px",
                 animationDelay: "0ms",
                 animationFillMode: "forwards",
               }}
@@ -27,7 +28,7 @@ export default async function BlogPage() {
               Blog
             </h1>
             <p
-              className="mt-4 text-gray-600 dark:text-gray-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
+              className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
               style={{
                 fontSize: "18px",
                 animationDelay: "100ms",

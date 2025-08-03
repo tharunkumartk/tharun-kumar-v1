@@ -3,13 +3,9 @@ import { formatDateRange } from "@/lib/utils";
 
 interface WorkExperienceProps {
   experience: WorkExp;
-  showViewMore?: boolean;
 }
 
-const WorkExperienceCard = ({
-  experience,
-  showViewMore = true,
-}: WorkExperienceProps) => {
+const WorkExperienceCard = ({ experience }: WorkExperienceProps) => {
   const dateRange = formatDateRange(experience.startDate, experience.endDate);
 
   return (
@@ -19,23 +15,23 @@ const WorkExperienceCard = ({
       rel="noopener noreferrer"
       className="block"
     >
-      <div className="grid grid-cols-[150px_1fr] gap-8 p-4 rounded-lg transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-800/50 cursor-pointer">
+      <div className="grid grid-cols-[150px_1fr] gap-8 p-4 rounded-lg transition-colors duration-300 hover:bg-stone-100 dark:hover:bg-stone-800/50 cursor-pointer">
         {/* Left column - Date only */}
-        <div className="text-sm text-gray-600 dark:text-gray-400">
+        <div className="text-sm text-stone-600 dark:text-stone-400">
           {dateRange}
         </div>
 
         {/* Right column - Everything else */}
         <div>
           {/* Position title */}
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+          <h3 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mb-4">
             {experience.position} @ {experience.company}
           </h3>
 
           {/* Content */}
           <div className="mb-4">
             <div
-              className="text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm max-w-none prose-gray dark:prose-invert"
+              className="text-stone-700 dark:text-stone-300 leading-relaxed prose prose-sm max-w-none prose-stone dark:prose-invert"
               dangerouslySetInnerHTML={{ __html: experience.content }}
             />
           </div>
@@ -45,7 +41,7 @@ const WorkExperienceCard = ({
             {experience.skills.map((skill) => (
               <span
                 key={skill}
-                className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-sm rounded-full"
+                className="px-3 py-1 bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 text-sm rounded-full"
               >
                 {skill}
               </span>

@@ -17,51 +17,51 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
         components={{
           // Headings
           h1: ({ children }) => (
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mt-12 mb-6 first:mt-0">
+            <h1 className="text-4xl font-bold text-stone-900 dark:text-stone-100 mt-12 mb-6 first:mt-0">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mt-10 mb-5">
+            <h2 className="text-2xl font-semibold text-stone-900 dark:text-stone-100 mt-10 mb-5">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mt-8 mb-4">
+            <h3 className="text-2xl font-semibold text-stone-900 dark:text-stone-100 mt-8 mb-4">
               {children}
             </h3>
           ),
           h4: ({ children }) => (
-            <h4 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-3">
+            <h4 className="text-xl font-semibold text-stone-900 dark:text-stone-100 mt-6 mb-3">
               {children}
             </h4>
           ),
           h5: ({ children }) => (
-            <h5 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-3">
+            <h5 className="text-lg font-semibold text-stone-900 dark:text-stone-100 mt-6 mb-3">
               {children}
             </h5>
           ),
           h6: ({ children }) => (
-            <h6 className="text-base font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-3">
+            <h6 className="text-base font-semibold text-stone-900 dark:text-stone-100 mt-6 mb-3">
               {children}
             </h6>
           ),
 
           // Paragraphs
           p: ({ children }) => (
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-lg">
+            <p className="text-stone-700 dark:text-stone-300 leading-relaxed mb-6 text-lg">
               {children}
             </p>
           ),
 
           // Lists
           ul: ({ children }) => (
-            <ul className="list-disc list-inside mb-6 space-y-2 text-gray-700 dark:text-gray-300">
+            <ul className="list-disc list-inside mb-6 space-y-2 text-stone-700 dark:text-stone-300">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="list-decimal list-inside mb-6 space-y-2 text-gray-700 dark:text-gray-300">
+            <ol className="list-decimal list-inside mb-6 space-y-2 text-stone-700 dark:text-stone-300">
               {children}
             </ol>
           ),
@@ -83,12 +83,12 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
 
           // Emphasis
           strong: ({ children }) => (
-            <strong className="font-bold text-gray-900 dark:text-gray-100">
+            <strong className="font-bold text-stone-900 dark:text-stone-100">
               {children}
             </strong>
           ),
           em: ({ children }) => (
-            <em className="italic text-gray-800 dark:text-gray-200">
+            <em className="italic text-stone-800 dark:text-stone-200">
               {children}
             </em>
           ),
@@ -97,14 +97,14 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           code: ({ className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");
             return match ? (
-              <pre className="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto mb-6">
+              <pre className="bg-stone-100 dark:bg-stone-800 rounded-lg p-4 overflow-x-auto mb-6">
                 <code className={className} {...props}>
                   {children}
                 </code>
               </pre>
             ) : (
               <code
-                className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-2 py-1 rounded text-sm font-mono"
+                className="bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 px-2 py-1 rounded text-sm font-mono"
                 {...props}
               >
                 {children}
@@ -114,8 +114,8 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
 
           // Blockquotes
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-6 py-2 my-6 bg-gray-50 dark:bg-gray-800/50 rounded-r-lg">
-              <div className="text-gray-700 dark:text-gray-300 italic">
+            <blockquote className="border-l-4 border-stone-300 dark:border-stone-600 pl-6 py-2 my-6 bg-stone-50 dark:bg-stone-800/50 rounded-r-lg">
+              <div className="text-stone-700 dark:text-stone-300 italic">
                 {children}
               </div>
             </blockquote>
@@ -123,21 +123,21 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
 
           // Horizontal rule
           hr: () => (
-            <hr className="border-gray-300 dark:border-gray-600 my-8" />
+            <hr className="border-stone-300 dark:border-stone-600 my-8" />
           ),
 
           // Images
           img: ({ src, alt }) => (
             <div className="my-8">
               <Image
-                src={src || ""}
-                alt={alt || ""}
+                src={(src as string) || "/images/blog/blog-1.jpeg"}
+                alt={alt || "Markdown image"}
                 width={800}
                 height={400}
                 className="rounded-lg shadow-lg w-full object-cover"
               />
               {alt && (
-                <p className="text-center text-gray-500 dark:text-gray-400 text-sm mt-2 italic">
+                <p className="text-center text-stone-500 dark:text-stone-400 text-sm mt-2 italic">
                   {alt}
                 </p>
               )}
@@ -147,29 +147,29 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           // Tables
           table: ({ children }) => (
             <div className="overflow-x-auto my-6">
-              <table className="min-w-full border border-gray-300 dark:border-gray-600">
+              <table className="min-w-full border border-stone-300 dark:border-stone-600">
                 {children}
               </table>
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="bg-gray-100 dark:bg-gray-800">{children}</thead>
+            <thead className="bg-stone-100 dark:bg-stone-800">{children}</thead>
           ),
           tbody: ({ children }) => (
-            <tbody className="bg-white dark:bg-gray-900">{children}</tbody>
+            <tbody className="bg-white dark:bg-stone-900">{children}</tbody>
           ),
           tr: ({ children }) => (
-            <tr className="border-b border-gray-300 dark:border-gray-600">
+            <tr className="border-b border-stone-300 dark:border-stone-600">
               {children}
             </tr>
           ),
           th: ({ children }) => (
-            <th className="px-4 py-2 text-left font-semibold text-gray-900 dark:text-gray-100">
+            <th className="px-4 py-2 text-left font-semibold text-stone-900 dark:text-stone-100">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="px-4 py-2 text-gray-700 dark:text-gray-300">
+            <td className="px-4 py-2 text-stone-700 dark:text-stone-300">
               {children}
             </td>
           ),

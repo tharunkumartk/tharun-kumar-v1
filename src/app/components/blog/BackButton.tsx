@@ -1,10 +1,15 @@
 import Link from "next/link";
 
-export default function BackButton() {
+interface BackButtonProps {
+  href: string;
+  title: string;
+}
+
+export default function BackButton({ href, title }: BackButtonProps) {
   return (
     <Link
-      href="/"
-      className="group inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200"
+      href={href}
+      className="group inline-flex items-center px-4 py-2 text-sm font-medium text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition-colors duration-200"
     >
       <svg
         className="mr-2 w-4 h-4 transition-transform duration-200 ease-in-out group-hover:-translate-x-1"
@@ -20,7 +25,7 @@ export default function BackButton() {
           d="M15 19l-7-7 7-7"
         />
       </svg>
-      Back to Home
+      Back to {title}
     </Link>
   );
 }

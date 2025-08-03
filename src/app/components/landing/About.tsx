@@ -6,7 +6,7 @@ const About = () => {
     >
       <div className="">
         <p
-          className="font-light text-gray-600 dark:text-gray-400 opacity-0 animate-fadeIn"
+          className="font-light text-stone-600 dark:text-stone-400 opacity-0 animate-fadeIn"
           style={{
             fontSize: "18px",
             animationDelay: "100ms",
@@ -14,7 +14,7 @@ const About = () => {
           }}
         >
           I&apos;m an{" "}
-          <span className="font-medium text-gray-900 dark:text-white">
+          <span className="font-medium text-stone-900 dark:text-white">
             engineer and researcher
           </span>{" "}
           driven by a passion for building impactful AI systems that bridge
@@ -25,7 +25,7 @@ const About = () => {
             href="https://www.universalagi.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-gray-900 dark:text-white underline hover:opacity-70"
+            className="font-medium text-stone-900 dark:text-white underline hover:opacity-70"
           >
             Universal AGI
           </a>
@@ -34,7 +34,7 @@ const About = () => {
             href="https://aws.amazon.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-gray-900 dark:text-white underline hover:opacity-70"
+            className="font-medium text-stone-900 dark:text-white underline hover:opacity-70"
           >
             AWS
           </a>
@@ -44,7 +44,7 @@ const About = () => {
             href="https://en.wikipedia.org/wiki/Sebastian_Thrun"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-gray-900 dark:text-white underline hover:opacity-70"
+            className="font-medium text-stone-900 dark:text-white underline hover:opacity-70"
           >
             Sebastian Thrun
           </a>
@@ -52,13 +52,13 @@ const About = () => {
           <br />
           <br />
           Currently, I&apos;m a senior at{" "}
-          <span className="font-medium text-gray-900 dark:text-white">
+          <span className="font-medium text-stone-900 dark:text-white">
             Princeton University
           </span>
           , studying CS and math. I&apos;m looking for full-time opportunities
           in AI research and engineering. Aside from working on fun projects and
           learning as much as I can about the world,{" "}
-          <span className="font-medium text-gray-900 dark:text-white">
+          <span className="font-medium text-stone-900 dark:text-white">
             I&apos;m looking for intense and fast-paced environments where I can
             ship products and push boundaries towards AGI
           </span>
