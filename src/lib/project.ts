@@ -15,22 +15,22 @@ export interface Project {
 const projectsDirectory = path.join(process.cwd(), "content/projects");
 
 export async function getAllProjects(): Promise<Project[]> {
-  // Get directory names under /content/projects
-  const projectDirs = fs
+  // Get markdown files directly from /content/projects
+  const projectFiles = fs
     .readdirSync(projectsDirectory, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
+    .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
     .map((dirent) => dirent.name);
 
   const allProjectData = await Promise.all(
-    projectDirs.map(async (dirName) => {
-      // Use directory name as slug
-      const slug = dirName;
+    projectFiles.map(async (fileName) => {
+      // Use filename without extension as slug
+      const slug = path.basename(fileName, ".md");
 
-      // Read index.md file from the project directory
-      const fullPath = path.join(projectsDirectory, dirName, "index.md");
+      // Read markdown file directly
+      const fullPath = path.join(projectsDirectory, fileName);
 
       if (!fs.existsSync(fullPath)) {
-        console.warn(`No index.md found in ${dirName} directory`);
+        console.warn(`Project file ${fileName} not found`);
         return null;
       }
 
@@ -39,11 +39,14 @@ export async function getAllProjects(): Promise<Project[]> {
       // Use gray-matter to parse the project metadata section
       const matterResult = matter(fileContents);
 
+      // Get timestamp from either 'timestamp' or 'date' field for backward compatibility
+      const timestamp = matterResult.data.timestamp || matterResult.data.date;
+
       // Combine the data with the slug and content
       return {
-        slug,
+        slug: matterResult.data.slug || slug, // Use slug from frontmatter if available, otherwise use filename
         title: matterResult.data.title,
-        timestamp: matterResult.data.timestamp,
+        timestamp: timestamp,
         cover: matterResult.data.cover,
         github: matterResult.data.github,
         tech: matterResult.data.tech || [],
@@ -64,7 +67,7 @@ export async function getAllProjects(): Promise<Project[]> {
 
 export async function getProject(slug: string): Promise<Project | null> {
   try {
-    const fullPath = path.join(projectsDirectory, slug, "index.md");
+    const fullPath = path.join(projectsDirectory, `${slug}.md`);
 
     if (!fs.existsSync(fullPath)) {
       console.error(`Project ${slug} not found`);
@@ -76,11 +79,14 @@ export async function getProject(slug: string): Promise<Project | null> {
     // Use gray-matter to parse the project metadata section
     const matterResult = matter(fileContents);
 
+    // Get timestamp from either 'timestamp' or 'date' field for backward compatibility
+    const timestamp = matterResult.data.timestamp || matterResult.data.date;
+
     // Combine the data with the slug and content
     return {
-      slug,
+      slug: matterResult.data.slug || slug, // Use slug from frontmatter if available, otherwise use provided slug
       title: matterResult.data.title,
-      timestamp: matterResult.data.timestamp,
+      timestamp: timestamp,
       cover: matterResult.data.cover,
       github: matterResult.data.github,
       tech: matterResult.data.tech || [],
@@ -93,13 +99,13 @@ export async function getProject(slug: string): Promise<Project | null> {
 }
 
 export function getAllProjectSlugs(): string[] {
-  const projectDirs = fs
+  const projectFiles = fs
     .readdirSync(projectsDirectory, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
+    .filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
+    .map((dirent) => path.basename(dirent.name, ".md"));
 
-  return projectDirs.filter((dirName) => {
-    const indexPath = path.join(projectsDirectory, dirName, "index.md");
-    return fs.existsSync(indexPath);
+  return projectFiles.filter((fileName) => {
+    const filePath = path.join(projectsDirectory, `${fileName}.md`);
+    return fs.existsSync(filePath);
   });
 }

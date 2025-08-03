@@ -5,6 +5,7 @@ import Navbar from "./components/landing/Navbar";
 import SocialIcons from "./components/landing/SocialIcons";
 import ScrollDetector from "./components/landing/ScrollDetector";
 import BlogColumn from "./components/landing/BlogColumn";
+import ProjectColumn from "./components/landing/ProjectColumn";
 
 export default async function Home() {
   return (
@@ -24,6 +25,7 @@ export default async function Home() {
           <div className="min-h-screen px-8">
             <About />
             <WorkExperienceColumn />
+            <ProjectColumn />
             <BlogColumn />
           </div>
         </div>

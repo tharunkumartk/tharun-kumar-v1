@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  BlogPostCardProps,
-  formatDate,
-  estimateReadTime,
-} from "./BlogPostCardProps";
+import { BlogPostCardProps } from "./BlogPostCardProps";
+import { formatDate, estimateReadTime } from "@/lib/utils";
 
 export default function BlogPostCardVertical({ post }: BlogPostCardProps) {
   return (

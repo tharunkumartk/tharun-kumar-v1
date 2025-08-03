@@ -1,10 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
-import {
-  estimateReadTime,
-  formatDate,
-} from "@/app/components/blog/blog-post-cards/BlogPostCardProps";
+import { estimateReadTime, formatDate } from "@/lib/utils";
 import BackButton from "@/app/components/blog/BackButton";
 import MarkdownContent from "@/app/components/blog/MarkdownContent";
 

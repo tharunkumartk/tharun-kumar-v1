@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Project } from "@/lib/project";
+import { formatDate } from "@/lib/utils";
 
 interface ProjectCardHorizontalProps {
   project: Project;
@@ -29,10 +30,24 @@ export default function ProjectCardHorizontal({
           <h3 className="text-[28px] font-medium text-stone-900 dark:text-white mb-2">
             {project.title}
           </h3>
+          <p className="text-sm text-stone-600 dark:text-stone-400 mb-2">
+            {project.content}
+          </p>
 
-          <div className="flex flex-row text-sm text-stone-600 dark:text-stone-400 space-x-4">
-            <span>{project.timestamp}</span>
-            <span>{project.tech.join(", ")}</span>
+          <div className="flex flex-col space-y-2">
+            <span className="text-sm text-stone-600 dark:text-stone-400">
+              {formatDate(project.timestamp)}
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {project.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 text-sm rounded-full"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
