@@ -1,6 +1,6 @@
 ---
-timestamp: "2021-03-15T00:00:00Z"
-title: 'Texas Climate Analysis'
+timestamp: "2022-03-15T00:00:00Z"
+title: 'Energy Resource Optimization'
 slug: 'texasclimate'
 cover: '/images/project/FinalMap.png'
 github: 'https://github.com/tharunkumartk/ClimateAnalysis'

@@ -1,6 +1,6 @@
 ---
-timestamp: "2024-09-15T00:00:00Z"
-title: 'Mood Detection'
+timestamp: "2021-12-12T00:00:00Z"
+title: 'CNN Mood Detection'
 slug: 'mooddetection'
 cover: '/images/project/DepressionReddit.png'
 github: 'https://github.com/tharunkumartk/MoodAnalysis'
