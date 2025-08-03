@@ -36,6 +36,18 @@ const FooterColumn = () => {
             OpenAI
           </a>
           .
+          <br />
+          <br />
+          View the source code on{" "}
+          <a
+            href="https://github.com/tharunkumartk/tharun-kumar-v1"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
+          >
+            GitHub
+          </a>
+          .
         </p>
       </div>
     </div>

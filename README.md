@@ -1,5 +1,7 @@
 <h1 align="center">
+<a href="https://tharunkumar.xyz/" target="_blank"> 
   tharunkumar.xyz
+  </a>
 </h1>
 <p align="center">
   A modern, responsive personal website with blog built with <a href="https://nextjs.org/" target="_blank">Next.js</a> and <a href="https://www.typescriptlang.org/" target="_blank">TypeScript</a>
