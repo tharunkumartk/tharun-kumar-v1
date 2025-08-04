@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { cache } from "react";
 
 export interface BlogPost {
   slug: string;
@@ -14,7 +15,7 @@ export interface BlogPost {
 
 const postsDirectory = path.join(process.cwd(), "content/blog");
 
-export function getAllBlogPosts(): BlogPost[] {
+export const getAllBlogPosts = cache((): BlogPost[] => {
   // Get file names under /content/blog
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
@@ -50,9 +51,9 @@ export function getAllBlogPosts(): BlogPost[] {
       return -1;
     }
   });
-}
+});
 
-export function getBlogPost(slug: string): BlogPost | null {
+export const getBlogPost = cache((slug: string): BlogPost | null => {
   try {
     const fullPath = path.join(postsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
@@ -74,11 +75,11 @@ export function getBlogPost(slug: string): BlogPost | null {
     console.error(`Error reading blog post ${slug}:`, error);
     return null;
   }
-}
+});
 
-export function getAllBlogSlugs(): string[] {
+export const getAllBlogSlugs = cache((): string[] => {
   const fileNames = fs.readdirSync(postsDirectory);
   return fileNames
     .filter((name) => name.endsWith(".md"))
     .map((fileName) => fileName.replace(/\.md$/, ""));
-}
+});

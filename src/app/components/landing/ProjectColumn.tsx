@@ -2,8 +2,8 @@ import { getAllProjects } from "@/lib/project";
 import ProjectCardHorizontal from "@/app/components/landing/ProjectCardHorizontal";
 import Link from "next/link";
 
-export default async function ProjectColumn() {
-  const projects = await getAllProjects();
+export default function ProjectColumn() {
+  const projects = getAllProjects();
 
   return (
     <div

@@ -2,8 +2,8 @@ import { getAllBlogPosts } from "@/lib/blog";
 import BlogPostCardHorizontal from "@/app/components/blog/blog-post-cards/BlogPostCardHorizontal";
 import Link from "next/link";
 
-export default async function WorkExperienceColumn() {
-  const blogPosts = await getAllBlogPosts();
+export default function BlogColumn() {
+  const blogPosts = getAllBlogPosts();
   return (
     <div
       id="blog"

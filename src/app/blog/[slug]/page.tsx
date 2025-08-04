@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getBlogPost, getAllBlogSlugs } from "@/lib/blog";
+import { getBlogPost } from "@/lib/blog";
 import { estimateReadTime, formatDate } from "@/lib/utils";
 import BackButton from "@/app/components/blog/BackButton";
 import MarkdownContent from "@/app/components/blog/MarkdownContent";
@@ -12,16 +12,9 @@ interface BlogPostPageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const slugs = getAllBlogSlugs();
-  return slugs.map((slug) => ({
-    slug,
-  }));
-}
-
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const post = getBlogPost(slug);
 
   if (!post) {
     notFound();
@@ -89,7 +82,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const post = getBlogPost(slug);
 
   if (!post) {
     return {

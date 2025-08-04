@@ -2,7 +2,7 @@
 
 import {
   useState,
-  useEffect,
+  useLayoutEffect,
   ReactNode,
   createContext,
   useContext,
@@ -28,7 +28,7 @@ interface ScrollDetectorProps {
 const ScrollDetector = ({ children }: ScrollDetectorProps) => {
   const [currentPage, setCurrentPage] = useState("about");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const observerOptions = {
       root: null,
       rootMargin: "-50% 0px -50% 0px", // Trigger when element is in the middle of viewport
@@ -74,19 +74,45 @@ const ScrollDetector = ({ children }: ScrollDetectorProps) => {
       }
     }, observerOptions);
 
-    // Start observing all sections after a small delay to ensure DOM is ready
-    const timeoutId = setTimeout(() => {
+    // Use requestAnimationFrame to ensure DOM is ready before observing
+    // This is more reliable than setTimeout for DOM readiness
+    const startObserving = () => {
       const sectionsToObserve = ["experience", "projects", "blog"];
+      const observedElements: Element[] = [];
+
       sectionsToObserve.forEach((sectionId) => {
         const element = document.getElementById(sectionId);
         if (element) {
           observer.observe(element);
+          observedElements.push(element);
         }
       });
-    }, 100);
+
+      // Store observed elements for cleanup
+      return observedElements;
+    };
+
+    const rafId = requestAnimationFrame(() => {
+      const observedElements = startObserving();
+
+      // Store cleanup function with observed elements
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (observer as any)._observedElements = observedElements;
+    });
 
     return () => {
-      clearTimeout(timeoutId);
+      cancelAnimationFrame(rafId);
+
+      // Properly unobserve individual elements before disconnecting
+      // Note: For only 3 sections this optimization is minimal, but good practice
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const observedElements = (observer as any)._observedElements;
+      if (observedElements) {
+        observedElements.forEach((element: Element) => {
+          observer.unobserve(element);
+        });
+      }
+
       observer.disconnect();
     };
   }, []);

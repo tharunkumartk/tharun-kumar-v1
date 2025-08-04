@@ -38,6 +38,11 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
       href: "/blog",
       isSelected: currentPage === "blog",
     },
+    {
+      label: "RESUME",
+      href: "/resume.pdf",
+      isSelected: currentPage === "resume",
+    },
   ];
 
   return (
@@ -47,6 +52,7 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
         animationDelay: "400ms",
         animationFillMode: "forwards",
       }}
+      aria-label="Main site navigation"
     >
       <div className="flex py-8">
         <div className="flex flex-col space-y-6">

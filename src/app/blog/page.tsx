@@ -3,20 +3,19 @@ import BlogPostCardVertical from "../components/blog/blog-post-cards/BlogPostCar
 import BackButton from "../components/blog/BackButton";
 import FooterColumn from "../components/landing/FooterColumn";
 
-export default async function BlogPage() {
-  const blogPosts = await getAllBlogPosts();
+export default function BlogPage() {
+  const blogPosts = getAllBlogPosts();
 
   return (
     <>
       <div className="min-h-screen">
         {/* Header with Back Button */}
-        <div className="flex items-center justify-between pt-16 px-4 max-w-4xl mx-auto w-full">
-          <BackButton href="/" title="Home" />
-        </div>
 
         {/* Main Content */}
-        <div className="px-8 pb-16">
+        <div className="max-w-4xl mx-auto px-8 md:px-12 lg:px-16 py-16 space-y-16">
           <div className="max-w-4xl mx-auto w-full">
+            <BackButton href="/" title="Home" />
+
             {/* Blog Header */}
             <div className="mb-12 text-center">
               <h1

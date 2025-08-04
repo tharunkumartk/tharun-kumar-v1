@@ -9,7 +9,7 @@ import ProjectColumn from "./components/landing/ProjectColumn";
 import MeetingNewPeopleColumn from "./components/landing/MeetingNewPeopleColumn";
 import FooterColumn from "./components/landing/FooterColumn";
 
-export default async function Home() {
+export default function Home() {
   return (
     <ScrollDetector>
       <div className="flex flex-col md:flex-row md:h-screen">

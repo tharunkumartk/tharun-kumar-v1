@@ -1,8 +1,8 @@
 import { getAllWorkExperiences } from "@/lib/work";
 import WorkExperienceCard from "@/app/components/landing/WorkExperience";
 
-export default async function WorkExperienceColumn() {
-  const workExperiences = await getAllWorkExperiences();
+export default function WorkExperienceColumn() {
+  const workExperiences = getAllWorkExperiences();
 
   return (
     <div
