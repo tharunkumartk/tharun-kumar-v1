@@ -1,10 +1,22 @@
-import { getAllBlogPosts } from "@/lib/blog";
+import { getBlogPosts } from "@/lib/blog";
 import BlogPostCardVertical from "../components/blog/blog-post-cards/BlogPostCardVertical";
 import BackButton from "../components/blog/BackButton";
 import FooterColumn from "../components/landing/FooterColumn";
+import { postsDirectory, projectsDirectory } from "@/lib/types";
 
 export default function BlogPage() {
-  const blogPosts = getAllBlogPosts();
+  const blogPosts = getBlogPosts(postsDirectory);
+  const projects = getBlogPosts(projectsDirectory);
+
+  const allPosts = [...blogPosts, ...projects];
+
+  const sortedPosts = allPosts.sort((a, b) => {
+    if (a.timestamp < b.timestamp) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
 
   return (
     <>
@@ -42,7 +54,7 @@ export default function BlogPage() {
 
             {/* Blog Posts Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {blogPosts.map((post, index) => (
+              {sortedPosts.map((post, index) => (
                 <div
                   key={post.slug + index}
                   className="opacity-0 animate-fadeIn"

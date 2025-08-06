@@ -1,9 +1,10 @@
-import { getAllBlogPosts } from "@/lib/blog";
+import { getBlogPosts } from "@/lib/blog";
 import BlogPostCardHorizontal from "@/app/components/blog/blog-post-cards/BlogPostCardHorizontal";
 import Link from "next/link";
+import { postsDirectory } from "@/lib/types";
 
 export default function BlogColumn() {
-  const blogPosts = getAllBlogPosts();
+  const blogPosts = getBlogPosts(postsDirectory);
   return (
     <div
       id="blog"

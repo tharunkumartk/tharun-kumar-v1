@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getBlogPost } from "@/lib/blog";
+import { postsDirectory, projectsDirectory } from "@/lib/types";
 import { estimateReadTime, formatDate } from "@/lib/utils";
 import BackButton from "@/app/components/blog/BackButton";
 import MarkdownContent from "@/app/components/blog/MarkdownContent";
@@ -14,9 +15,16 @@ interface BlogPostPageProps {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
 
-  if (!post) {
+  // First try to get the post from the blog directory
+  let postData = getBlogPost(slug, postsDirectory);
+  if (!postData) {
+    // If not found, try to get the post from the projects directory
+    postData = getBlogPost(slug, projectsDirectory);
+  }
+
+  // If still not found, return 404
+  if (!postData) {
     notFound();
   }
 
@@ -28,8 +36,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-row text-xs sm:text-sm text-stone-600 dark:text-stone-400 space-x-4 mt-auto ">
-            <span>{formatDate(post.timestamp)}</span>
-            <span>{estimateReadTime(post.content)} min read</span>
+            <span>{formatDate(postData.timestamp)}</span>
+            <span>{estimateReadTime(postData.content)} min read</span>
           </div>
           <h1
             className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn text-center"
@@ -39,7 +47,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               animationFillMode: "forwards",
             }}
           >
-            {post.title}
+            {postData.title}
           </h1>
           <div
             className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn text-center max-w-3xl "
@@ -49,13 +57,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               animationFillMode: "forwards",
             }}
           >
-            {post.summary}
+            {postData.summary}
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
           <Image
-            src={post.imageUrl}
-            alt={post.title}
+            src={postData.imageUrl}
+            alt={postData.title}
             width={800}
             height={400}
             className="rounded-xl flex-shrink-0 w-full h-[400px] object-cover opacity-0 animate-fadeIn"
@@ -72,7 +80,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             animationFillMode: "forwards",
           }}
         >
-          <MarkdownContent content={post.content} />
+          <MarkdownContent content={postData.content} />
         </div>
         <FooterColumn />
       </div>
@@ -82,21 +90,25 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
-
+  const post = getBlogPost(slug, postsDirectory);
+  let postData = post;
   if (!post) {
+    postData = getBlogPost(slug, projectsDirectory);
+  }
+
+  if (!postData) {
     return {
       title: "Blog Post Not Found",
     };
   }
 
   return {
-    title: post.title,
-    description: post.summary,
+    title: postData.title,
+    description: postData.summary,
     openGraph: {
-      title: post.title,
-      description: post.summary,
-      images: [post.imageUrl],
+      title: postData.title,
+      description: postData.summary,
+      images: [postData.imageUrl],
     },
   };
 }
