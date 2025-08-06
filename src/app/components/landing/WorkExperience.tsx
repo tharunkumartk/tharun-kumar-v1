@@ -1,8 +1,8 @@
-import { WorkExperience as WorkExp } from "@/lib/work";
+import { WorkExperience } from "@/lib/types";
 import { formatDateRange } from "@/lib/utils";
 
 interface WorkExperienceProps {
-  experience: WorkExp;
+  experience: WorkExperience;
 }
 
 const WorkExperienceCard = ({ experience }: WorkExperienceProps) => {

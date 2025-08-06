@@ -8,7 +8,7 @@ export default function BlogPostCardVertical({ post }: BlogPostCardProps) {
     <Link href={`/blog/${post.slug}`} className="group block w-full h-full">
       <div className="flex flex-col h-full space-y-4 rounded-lg transition-colors duration-300">
         {/* Gradient image */}
-        <div className="relative aspect-video rounded-xl overflow-hidden flex-shrink-0">
+        <div className="relative aspect-square rounded-xl overflow-hidden flex-shrink-0">
           <Image
             src={post.imageUrl}
             alt={post.title}

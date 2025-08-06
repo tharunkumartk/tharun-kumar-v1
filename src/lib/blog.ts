@@ -2,22 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { cache } from "react";
+import { BlogPost, postsDirectory } from "./types";
 
-export interface BlogPost {
-  slug: string;
-  title: string;
-  timestamp: string;
-  tags: string[];
-  imageUrl: string;
-  summary: string;
-  content: string;
-}
-
-const postsDirectory = path.join(process.cwd(), "content/blog");
-
-export const getAllBlogPosts = cache((): BlogPost[] => {
+export const getBlogPosts = cache((directory: string): BlogPost[] => {
   // Get file names under /content/blog
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(directory);
   const allPostsData = fileNames
     .filter((name) => name.endsWith(".md"))
     .map((fileName) => {
@@ -25,7 +14,11 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       const slug = fileName.replace(/\.md$/, "");
 
       // Read markdown file as string
-      const fullPath = path.join(postsDirectory, fileName);
+      const fullPath = path.join(directory, fileName);
+      if (!fs.existsSync(fullPath)) {
+        console.warn(`File not found: ${fullPath}`);
+        return null;
+      }
       const fileContents = fs.readFileSync(fullPath, "utf8");
 
       // Use gray-matter to parse the post metadata section
@@ -41,7 +34,8 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
         summary: matterResult.data.summary,
         content: matterResult.content,
       } as BlogPost;
-    });
+    })
+    .filter((post): post is BlogPost => post !== null);
 
   // Sort posts by timestamp (newest first)
   return allPostsData.sort((a, b) => {
@@ -53,29 +47,35 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
   });
 });
 
-export const getBlogPost = cache((slug: string): BlogPost | null => {
-  try {
-    const fullPath = path.join(postsDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+export const getBlogPost = cache(
+  (slug: string, directory: string): BlogPost | null => {
+    try {
+      const fullPath = path.join(directory, `${slug}.md`);
+      if (!fs.existsSync(fullPath)) {
+        console.warn(`Blog post file not found: ${fullPath}`);
+        return null;
+      }
+      const fileContents = fs.readFileSync(fullPath, "utf8");
 
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
+      // Use gray-matter to parse the post metadata section
+      const matterResult = matter(fileContents);
 
-    // Combine the data with the slug and raw markdown content
-    return {
-      slug,
-      title: matterResult.data.title,
-      timestamp: matterResult.data.timestamp,
-      tags: matterResult.data.tags,
-      imageUrl: matterResult.data.imageUrl,
-      summary: matterResult.data.summary,
-      content: matterResult.content,
-    } as BlogPost;
-  } catch (error) {
-    console.error(`Error reading blog post ${slug}:`, error);
-    return null;
+      // Combine the data with the slug and raw markdown content
+      return {
+        slug,
+        title: matterResult.data.title,
+        timestamp: matterResult.data.timestamp,
+        tags: matterResult.data.tags,
+        imageUrl: matterResult.data.imageUrl,
+        summary: matterResult.data.summary,
+        content: matterResult.content,
+      } as BlogPost;
+    } catch (error) {
+      console.error(`Error reading blog post ${slug}:`, error);
+      return null;
+    }
   }
-});
+);
 
 export const getAllBlogSlugs = cache((): string[] => {
   const fileNames = fs.readdirSync(postsDirectory);

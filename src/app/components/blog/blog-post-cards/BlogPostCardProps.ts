@@ -1,4 +1,4 @@
-import { BlogPost } from "@/lib/blog";
+import { BlogPost } from "@/lib/types";
 
 interface BlogPostCardProps {
   post: BlogPost;

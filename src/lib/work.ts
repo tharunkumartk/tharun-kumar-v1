@@ -2,18 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { cache } from "react";
-
-export interface WorkExperience {
-  slug: string;
-  company: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  companyUrl: string;
-  skills: string[];
-  order: number;
-  content: string;
-}
+import { WorkExperience } from "./types";
 
 const workDirectory = path.join(process.cwd(), "content/work");
 

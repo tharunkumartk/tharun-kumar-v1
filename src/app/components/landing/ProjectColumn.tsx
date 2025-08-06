@@ -1,9 +1,10 @@
-import { getAllProjects } from "@/lib/project";
+import { getBlogPosts } from "@/lib/blog";
 import ProjectCardHorizontal from "@/app/components/landing/ProjectCardHorizontal";
 import Link from "next/link";
+import { projectsDirectory } from "@/lib/types";
 
 export default function ProjectColumn() {
-  const projects = getAllProjects();
+  const projects = getBlogPosts(projectsDirectory);
 
   return (
     <div
