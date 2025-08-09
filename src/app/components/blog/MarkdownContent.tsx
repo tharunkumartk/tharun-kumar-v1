@@ -70,16 +70,56 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           ),
 
           // Links
-          a: ({ href, children }) => (
-            <a
-              href={href}
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {children}
-            </a>
-          ),
+          a: ({ href, children }) => {
+            const url = (href as string) || "";
+            const lowerUrl = url.toLowerCase();
+            const isVideo =
+              lowerUrl.endsWith(".mp4") ||
+              lowerUrl.endsWith(".mov") ||
+              lowerUrl.endsWith(".webm") ||
+              lowerUrl.endsWith(".m3u8");
+
+            const getMimeType = (u: string): string => {
+              if (u.endsWith(".mp4")) return "video/mp4";
+              if (u.endsWith(".mov")) return "video/quicktime";
+              if (u.endsWith(".webm")) return "video/webm";
+              if (u.endsWith(".m3u8")) return "application/vnd.apple.mpegurl";
+              return "video/*";
+            };
+
+            if (isVideo) {
+              return (
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  className="w-full rounded-lg shadow-lg my-8"
+                >
+                  <source src={url} type={getMimeType(lowerUrl)} />
+                  Your browser does not support the video tag.{" "}
+                  <a
+                    href={url}
+                    className="text-blue-600 dark:text-blue-400 underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Download video
+                  </a>
+                </video>
+              );
+            }
+
+            return (
+              <a
+                href={href}
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium transition-colors duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {children}
+              </a>
+            );
+          },
 
           // Emphasis
           strong: ({ children }) => (

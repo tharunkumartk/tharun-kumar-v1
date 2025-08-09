@@ -1,7 +1,7 @@
 ---
 timestamp: "2025-08-05T00:00:00Z"
 title: 'An app to meet chillers'
-imageUrl: '/images/project/chillers-logo.png'
+imageUrl: '/images/project/chillers/chillers-logo.png'
 github: 'https://github.com/tharunkumartk/chillers-ios'
 blogSlug: 'chillers'
 tags:
@@ -27,7 +27,25 @@ As we recalled what made each person "chill", we realized some initial ways to f
 
 If they're willing to talk about any of the above things with any sort of excitement, they're usually a "chiller". 
 
-The following week, inspired by our findings, my roommate and I decided to actually create the app. On a Friday night after work, from 5pm to 10pm, we built it. By 11pm, we headed to another party to pitch the app to people. Our "go-to-market" strategy was straightforward: throw a massive, insanely hype party, get everyone to download the app, and then use it to filter guests for future parties. Essentially, we aimed to solve the cold-start problem by incentivizing users with the best party they've been to. (see a quick onboarding onto the app below)
+The following week, inspired by our findings, my roommate and I decided to actually create the app. On a Friday night after work, from 5pm to 10pm, we built it. 
+
+### Implementation 
+
+We used Supabase to host the database and user profiles, Twilio for phone authentication, Apple Push Notifications to handle push notifications, and SwiftUI to build the actual application. Here's a concise system diagram:
+
+![Chillers system diagram](/images/project/chillers/chillers-sys-diagram.png)
+
+We focused heavily on the onboarding part of the application to minimize churn in the actual account creation process (since we viewed this as the easiest wall for users to hit). Here's a quick demo of the onboarding form we landed on:
+
+
+[Watch the demo video](https://ydfksaipdlqazgcsrdlm.supabase.co/storage/v1/object/public/demo-videos/chillers-demo.mp4)
+
+
+
+### Learnings
+
+By 11pm, we headed to another party to pitch the app to people. Our "go-to-market" strategy was straightforward: throw a massive, insanely hype party, get everyone to download the app, and then use it to filter guests for future parties. Essentially, we aimed to solve the cold-start problem by incentivizing users with the best party they've been to. (see a quick onboarding onto the app below)
+
 
 Throwing our first party was nerve-wracking. From 9pm to 10:30pm, literally no one showed up. It was terrifying—people would peek in, see just five brown guys around a DJ set in an empty room, and leave. Realizing we had to take action, we began directly engaging with anyone who stepped through the door, offering drinks and conversation. It was the most extroverted I'd ever been, but it worked.
 
