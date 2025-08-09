@@ -38,7 +38,7 @@ We used Supabase to host the database and user profiles, Twilio for phone authen
 We focused heavily on the onboarding part of the application to minimize churn in the actual account creation process (since we viewed this as the easiest wall for users to hit). Here's a quick demo of the onboarding form we landed on:
 
 
-[Watch the demo video](https://ydfksaipdlqazgcsrdlm.supabase.co/storage/v1/object/public/demo-videos/chillers-demo.mp4)
+[Onboarding demo video](https://ydfksaipdlqazgcsrdlm.supabase.co/storage/v1/object/public/demo-videos/chillers-demo.mp4)
 
 
 

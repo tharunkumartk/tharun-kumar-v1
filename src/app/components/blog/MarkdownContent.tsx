@@ -1,7 +1,8 @@
 import ReactMarkdown from "react-markdown";
+import { Children, isValidElement } from "react";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import Image from "next/image";
+// import Image from "next/image";
 import "highlight.js/styles/github-dark.css";
 
 interface MarkdownContentProps {
@@ -48,10 +49,12 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           ),
 
           // Paragraphs
+          // Always use a div wrapper to avoid invalid nesting when custom renderers
+          // return block elements (e.g., video, image wrappers) inside paragraphs.
           p: ({ children }) => (
-            <p className="text-stone-700 dark:text-stone-300 leading-relaxed mb-6 text-lg">
+            <div className="text-stone-700 dark:text-stone-300 leading-relaxed mb-6 text-lg">
               {children}
-            </p>
+            </div>
           ),
 
           // Lists
@@ -88,24 +91,49 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             };
 
             if (isVideo) {
+              const extractText = (nodes: React.ReactNode): string => {
+                return Children.toArray(nodes)
+                  .map((node) => {
+                    if (typeof node === "string") return node;
+                    if (isValidElement(node)) {
+                      const element = node as React.ReactElement<{
+                        children?: React.ReactNode;
+                      }>;
+                      return extractText(element.props?.children);
+                    }
+                    return "";
+                  })
+                  .join("")
+                  .trim();
+              };
+
+              const caption = extractText(children);
+
               return (
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  className="w-full rounded-lg shadow-lg my-8"
-                >
-                  <source src={url} type={getMimeType(lowerUrl)} />
-                  Your browser does not support the video tag.{" "}
-                  <a
-                    href={url}
-                    className="text-blue-600 dark:text-blue-400 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <>
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="w-full rounded-lg shadow-lg my-8"
                   >
-                    Download video
-                  </a>
-                </video>
+                    <source src={url} type={getMimeType(lowerUrl)} />
+                    Your browser does not support the video tag.{" "}
+                    <a
+                      href={url}
+                      className="text-blue-600 dark:text-blue-400 underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Download video
+                    </a>
+                  </video>
+                  {caption && (
+                    <span className="block text-center text-stone-500 dark:text-stone-400 text-sm -mt-6 mb-6 italic">
+                      {caption}
+                    </span>
+                  )}
+                </>
               );
             }
 
@@ -167,22 +195,25 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           ),
 
           // Images
-          img: ({ src, alt }) => (
-            <div className="my-8">
-              <Image
-                src={(src as string) || "/images/blog/blog-1.jpeg"}
-                alt={alt || "Markdown image"}
-                width={800}
-                height={400}
-                className="rounded-lg shadow-lg w-full object-cover"
-              />
-              {alt && (
-                <p className="text-center text-stone-500 dark:text-stone-400 text-sm mt-2 italic">
-                  {alt}
-                </p>
-              )}
-            </div>
-          ),
+          img: ({ src, alt }) => {
+            const altText = alt || "Markdown image";
+            return (
+              <div className="my-8">
+                {/* Use a plain img to avoid any SSR/client mismatch from Next/Image runtime logic in MD */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={(src as string) || "/images/blog/blog-1.jpeg"}
+                  alt={altText}
+                  className="rounded-lg shadow-lg w-full object-cover"
+                />
+                {alt && (
+                  <div className="text-center text-stone-500 dark:text-stone-400 text-sm mt-2 italic">
+                    {alt}
+                  </div>
+                )}
+              </div>
+            );
+          },
 
           // Tables
           table: ({ children }) => (
