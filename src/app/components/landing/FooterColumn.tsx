@@ -1,7 +1,7 @@
 const FooterColumn = () => {
   return (
     <div
-      className="flex flex-col justify-start items-center pt-20 pb-20"
+      className="flex flex-col justify-start items-center pt-20 pb-10"
       id="footer"
     >
       <div className="">

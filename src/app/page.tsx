@@ -31,7 +31,7 @@ export default function Home() {
             <AboutColumn />
             <WorkExperienceColumn />
             <ProjectColumn />
-            <BlogColumn />
+            {/* <BlogColumn /> commented until i have more non-project blogs */}
             <MeetingNewPeopleColumn />
             <FooterColumn />
           </div>

@@ -35,7 +35,7 @@ export default function ProjectColumn() {
         }}
       >
         <Link
-          href="/projects"
+          href="/blog"
           className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-stone-900 dark:text-stone-100 bg-transparent  dark:border-stone-600 rounded-md  dark:hover:border-stone-500 transition-all duration-200 ease-in-out"
         >
           View All

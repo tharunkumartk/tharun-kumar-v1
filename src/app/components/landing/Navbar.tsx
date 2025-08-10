@@ -33,11 +33,11 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
       href: "#projects",
       isSelected: currentPage === "projects",
     },
-    {
-      label: "BLOG",
-      href: "/blog",
-      isSelected: currentPage === "blog",
-    },
+    // {
+    //   label: "BLOG",
+    //   href: "/blog",
+    //   isSelected: currentPage === "blog",
+    // },
     {
       label: "RESUME",
       href: "/resume.pdf",

@@ -33,14 +33,14 @@ The following week, inspired by our findings, my roommate and I decided to actua
 
 We used Supabase to host the database and user profiles, Twilio for phone authentication, Apple Push Notifications to handle push notifications, and SwiftUI to build the actual application. Here's a concise system diagram:
 
-![Chillers system diagram](https://tharunkumar.xyz/_next/image?url=%2Fimages%2Fproject%2Fchillers%2Fchillers-sys-diagram.png&w=1920&q=75)
+![Chillers system diagram](/images/project/chillers/chillers-sys-diagram.png)
 
 We focused heavily on the onboarding part of the application to minimize churn in the actual account creation process (since we viewed this as the easiest wall for users to hit). Here's a quick demo of the onboarding form we landed on:
 
 
 [Onboarding demo video](https://ydfksaipdlqazgcsrdlm.supabase.co/storage/v1/object/public/demo-videos/chillers-demo.mp4)
 
-All source code can be found on [github](https://github.com/tharunkumartk/chillers-ios).
+All source code can be found on [GitHub](https://github.com/tharunkumartk/chillers-ios).
 
 
 ### Learnings
