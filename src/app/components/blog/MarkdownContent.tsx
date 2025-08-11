@@ -1,9 +1,12 @@
 import ReactMarkdown from "react-markdown";
 import { Children, isValidElement } from "react";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeHighlight from "rehype-highlight";
+import rehypeKatex from "rehype-katex";
 // import Image from "next/image";
 import "highlight.js/styles/github-dark.css";
+import "katex/dist/katex.min.css";
 
 interface MarkdownContentProps {
   content: string;
@@ -13,8 +16,8 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
   return (
     <div className="prose prose-lg dark:prose-invert max-w-none">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeHighlight]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex, rehypeHighlight]}
         components={{
           // Headings
           h1: ({ children }) => (
