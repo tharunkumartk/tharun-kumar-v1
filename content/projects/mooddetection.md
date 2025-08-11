@@ -1,7 +1,7 @@
 ---
 timestamp: "2021-12-12T00:00:00Z"
 title: 'CNN Mood Detection'
-imageUrl: '/images/project/DepressionReddit.png'
+imageUrl: '/images/blog/blog-2.png'
 github: 'https://github.com/tharunkumartk/MoodAnalysis'
 blogSlug: 'mooddetection'
 tags:
@@ -14,4 +14,6 @@ summary: 'CNN-based mood detection system that analyzes Reddit posts to identify
 ---
 
 Neural network-based mood analysis algorithm that detects human emotion from conversation text. Trained on large-scale Reddit data to analyze user sentiment.
+
+More coming soon...
 
