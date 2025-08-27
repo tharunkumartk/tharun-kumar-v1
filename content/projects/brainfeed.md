@@ -1,6 +1,6 @@
 ---
 timestamp: "2024-10-15T00:00:00Z"
-title: 'Brainfeed'
+title: 'Contextual Bandits for Realtime News Personalization '
 imageUrl: '/images/project/brainfeed/brainfeed-logo.png'
 github: 'https://github.com/tharunkumartk/brainfeed-ios'
 blogSlug: 'brainfeed'
@@ -12,7 +12,7 @@ tags:
   - Firestore/GCP
   - Pinecone
   - Data Pipelines
-summary: "iOS app with hyper-personalized news summaries from reputable sources powered by a multi-armed bandit recommendation system. It's on TestFlight!"
+summary: "Hyper-personalized news summaries from reputable sources powered by a multi-armed bandit recommendation system. It's on TestFlight!"
 ---
 Twitter has been my go-to source for tech and startup news for the last two years. Not because it’s perfect, but because it’s fast — the recommendation algorithm catches things in near real-time, and you get not just the facts, but also people’s raw reactions. For a while, that was exactly what I wanted.
 

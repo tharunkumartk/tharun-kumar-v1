@@ -17,7 +17,7 @@ I implemented the core NeRF pipeline from scratch in PyTorch based on the [origi
 
 ## Background
 
-![NeRF concept overview](/images/project/nerf-implementation/nerf-concept.png)
+![NeRF concept overview](/images/blog/nerf-implementation/nerf-concept.png)
 
 Neural Radiance Fields (NeRF) represent a scene as a continuous volumetric field and use a neural network to map a 3D point and a viewing direction to a colour and opacity. The method implicitly parameterises a scene with a multi-layer perceptron (MLP) that takes a 3D position **x** and a view direction **d** and outputs a colour vector **c** and a density value σ. The colour integrates emitted radiance along the ray and the density acts like a probability of encountering matter along the ray. Rendering novel views becomes an instance of numerical quadrature: the continuous rendering integral
 
@@ -31,7 +31,7 @@ which resembles the familiar alpha-compositing formula in computer graphics. Bel
 
 ### Part 1 — Network architecture
 
-![NeRF network architecture diagram, from original NeRF paper ](/images/project/nerf-implementation/architecture.png)
+![NeRF network architecture diagram, from original NeRF paper ](/images/blog/nerf-implementation/architecture.png)
 
 The NeRF MLP accepts a positional encoding of the 3D point and, optionally, a positional encoding of the view direction. Following the original architecture, the network contains **D** fully connected layers of width **W** with ReLU activations. A **skip connection** is introduced at layer 4: the encoded position (dimension 60) is concatenated with the activations of layer 4 and fed into layer 5, helping the network "remember" positional information. After eight layers the scalar volume density σ is produced and a ReLU is applied to enforce non-negativity. The view-dependent branch then concatenates the encoded viewing direction (dimension 24) with the features from the previous layer and outputs a 3-element colour vector. Concretely, our PyTorch implementation defines a list of linear layers for the position branch and separate linear layers for the feature, density and RGB heads:
 
@@ -129,13 +129,13 @@ Training a NeRF requires tens of thousands of gradient steps. Below are represen
 
 ### Lego scene
 
-![NeRF training progression on LEGO scene](/images/project/nerf-implementation/lego.png)
+![NeRF training progression on LEGO scene](/images/blog/nerf-implementation/lego.png)
 
 The LEGO truck scene shows four snapshots at 5,000, 10,000, 15,000 and 25,000 training iterations. Early on the model only captures coarse shapes—renderings are extremely blurry and yellow artefacts float in mid-air. By 10,000 iterations the network has learned enough structure to reveal the circular nubs on the ground, though edges are still soft. At 15,000 iterations the shadows cast by the LEGO nubs on the ground and the nubs on the top plate become more pronounced. By 25,000 iterations the shadows beneath the truck and under its roof are well resolved and the reconstruction appears crisp and high resolution.
 
 ### Fern scene
 
-![NeRF training progression on Fern scene](/images/project/nerf-implementation/fern.png)
+![NeRF training progression on Fern scene](/images/blog/nerf-implementation/fern.png)
 
 The fern scene exhibits a similar progression. At 5,000 iterations the reconstruction is extremely blurry—the fronds appear as smudges and the background branches are indistinguishable. After 10,000 iterations the left-hand leaves and some background branches become discernible, but the right-hand fronds are still blurred. At 15,000 iterations the network resolves the leaves and background details, and even the vent near the top of the scene becomes visible. By 30,000 iterations the fern's leaves are fully defined across the entire scene with accurate shadows and highlights, demonstrating the power of the model to capture fine textures and lighting.
 
