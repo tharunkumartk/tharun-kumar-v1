@@ -1,6 +1,6 @@
 import { getBlogPosts } from "@/lib/blog";
 import { postsDirectory, projectsDirectory } from "@/lib/types";
-import BlogPageClient from "./BlogPageClient";
+import BlogPageClient from "../components/blog/BlogPageClient";
 
 export default function BlogPage() {
   const blogPosts = getBlogPosts(postsDirectory);

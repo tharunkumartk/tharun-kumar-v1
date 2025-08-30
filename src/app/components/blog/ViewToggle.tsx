@@ -1,20 +1,15 @@
 "use client";
 
-import { useState } from "react";
-
 interface ViewToggleProps {
+  viewMode: "grid" | "list";
   onViewChange: (view: "grid" | "list") => void;
-  defaultView?: "grid" | "list";
 }
 
 export default function ViewToggle({
+  viewMode,
   onViewChange,
-  defaultView = "list",
 }: ViewToggleProps) {
-  const [currentView, setCurrentView] = useState<"grid" | "list">(defaultView);
-
   const handleViewChange = (view: "grid" | "list") => {
-    setCurrentView(view);
     onViewChange(view);
   };
 
@@ -23,7 +18,7 @@ export default function ViewToggle({
       <button
         onClick={() => handleViewChange("list")}
         className={`p-2 rounded-md transition-colors duration-200 ${
-          currentView === "list"
+          viewMode === "list"
             ? "bg-white dark:bg-stone-600 text-stone-900 dark:text-white shadow-sm"
             : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
         }`}
@@ -51,7 +46,7 @@ export default function ViewToggle({
       <button
         onClick={() => handleViewChange("grid")}
         className={`p-2 rounded-md transition-colors duration-200 ${
-          currentView === "grid"
+          viewMode === "grid"
             ? "bg-white dark:bg-stone-600 text-stone-900 dark:text-white shadow-sm"
             : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
         }`}
