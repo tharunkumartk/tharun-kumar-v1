@@ -7,7 +7,7 @@ blogSlug: 'chillers'
 tags:
   - SwiftUI
   - Supabase
-summary: 'Exclusive iOS app for connecting verified "chillers" through curated parties and community-driven filtering, actually launched with great initial traction.'
+summary: 'iOS app for connecting verified "chillers" through curated parties and community-driven filtering, actually launched with great initial traction.'
 ---
 This is the story of how I made an app to meet chillers.
 

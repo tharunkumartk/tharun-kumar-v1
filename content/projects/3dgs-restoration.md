@@ -1,17 +1,17 @@
 ---
 timestamp: "2025-05-05T00:00:00Z"
-title: 'Sparse View Gaussian Splatting'
+title: 'Learned Diffusion Priors to Optimize Gaussian Splatting'
 imageUrl: '/images/project/3dgs-restoration/horse_clean.gif'
 github: 'https://github.com/tharunkumartk/3DGS-Inpainting-Refinement'
 blogSlug: '3dgs-restoration'
 tags:
   - PyTorch
   - Neural Rendering
-  - Artifical Intelligence
+  - Research
   - Stable Diffusion
   - Machine Learning
-  - Research
-summary: 'Novel view synthesis in 3D reconstruction with sparse-view inputs'
+  - Artificial Intelligence
+summary: 'Novel view synthesis in 3D reconstruction with sparse-view inputs, using learned priors from image generation models.'
 ---
 What if we teach a model how the world is "supposed" to look like, to help it build better 3D reconstructions. 
 

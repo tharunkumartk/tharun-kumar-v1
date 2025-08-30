@@ -1,6 +1,6 @@
 ---
 timestamp: "2025-01-15T00:00:00Z"
-title: 'Deep Convolutional GAN Implementation'
+title: 'Deep Convolutional GAN from Scratch'
 imageUrl: '/images/blog/blog-4.png'
 github: 'https://github.com/tharunkumartk/dcgan-implementation'
 blogSlug: 'dcgan'
