@@ -32,35 +32,40 @@ export function useBlogFilters(posts: BlogPost[]) {
     return Array.from(tagSet).sort();
   }, [posts]);
 
+  // Memoize the filter function to avoid recreating on every render
+  const filterFunction = useMemo(() => {
+    if (selectedTags.length === 0) return null;
+    return (post: BlogPost) =>
+      selectedTags.some((selectedTag) => post.tags?.includes(selectedTag));
+  }, [selectedTags]);
+
+  // Memoize the sort function to avoid recreating on every render
+  const sortFunction = useMemo(() => {
+    switch (sortOrder) {
+      case "newest":
+        return (a: BlogPost, b: BlogPost) =>
+          a.timestamp < b.timestamp ? 1 : -1;
+      case "oldest":
+        return (a: BlogPost, b: BlogPost) =>
+          a.timestamp > b.timestamp ? 1 : -1;
+      case "alphabetical":
+        return (a: BlogPost, b: BlogPost) => a.title.localeCompare(b.title);
+      case "reverse-alphabetical":
+        return (a: BlogPost, b: BlogPost) => b.title.localeCompare(a.title);
+      default:
+        return () => 0;
+    }
+  }, [sortOrder]);
+
   // Filter and sort posts
   const filteredAndSortedPosts = useMemo(() => {
-    let filtered = posts;
+    // Apply filtering
+    const filtered = filterFunction ? posts.filter(filterFunction) : posts;
 
-    // Filter by tags
-    if (selectedTags.length > 0) {
-      filtered = posts.filter((post) =>
-        selectedTags.some((selectedTag) => post.tags?.includes(selectedTag))
-      );
-    }
-
-    // Sort posts
-    const sorted = [...filtered].sort((a, b) => {
-      switch (sortOrder) {
-        case "newest":
-          return a.timestamp < b.timestamp ? 1 : -1;
-        case "oldest":
-          return a.timestamp > b.timestamp ? 1 : -1;
-        case "alphabetical":
-          return a.title.localeCompare(b.title);
-        case "reverse-alphabetical":
-          return b.title.localeCompare(a.title);
-        default:
-          return 0;
-      }
-    });
-
-    return sorted;
-  }, [posts, selectedTags, sortOrder]);
+    // Apply sorting - create a copy only if we have items to sort
+    if (filtered.length === 0) return filtered;
+    return [...filtered].sort(sortFunction);
+  }, [posts, filterFunction, sortFunction]);
 
   const handleTagToggle = useCallback((tag: string) => {
     setSelectedTags((prev) =>
@@ -87,27 +92,21 @@ export function useBlogFilters(posts: BlogPost[]) {
 export function useDropdownState() {
   const [openDropdown, setOpenDropdown] = useState<DropdownType>(null);
 
-  const handleClickOutside = useCallback(
-    (event: MouseEvent) => {
-      if (
-        openDropdown === "filter" &&
-        !(event.target as Element).closest(".filter-dropdown")
-      ) {
-        setOpenDropdown(null);
-      }
-      if (
-        openDropdown === "sort" &&
-        !(event.target as Element).closest(".sort-dropdown")
-      ) {
-        setOpenDropdown(null);
-      }
-    },
-    [openDropdown]
-  );
+  // Optimize click outside handler to avoid recreating on every openDropdown change
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    const target = event.target as Element;
+    const isFilterDropdown = target.closest(".filter-dropdown");
+    const isSortDropdown = target.closest(".sort-dropdown");
+
+    // Close any dropdown if clicking outside of all dropdowns
+    if (!isFilterDropdown && !isSortDropdown) {
+      setOpenDropdown(null);
+    }
+  }, []);
 
   useEffect(() => {
     if (openDropdown) {
-      document.addEventListener("click", handleClickOutside);
+      document.addEventListener("click", handleClickOutside, { passive: true });
       return () => document.removeEventListener("click", handleClickOutside);
     }
   }, [openDropdown, handleClickOutside]);

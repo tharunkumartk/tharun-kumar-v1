@@ -40,9 +40,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <span>{estimateReadTime(postData.content)} min read</span>
           </div>
           <h1
-            className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn text-center"
+            className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
             style={{
-              fontSize: "60px",
               animationDelay: "0ms",
               animationFillMode: "forwards",
             }}

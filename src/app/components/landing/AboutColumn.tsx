@@ -6,12 +6,11 @@ const AboutColumn = () => {
     >
       <div className="">
         <p
-          className="font-light text-stone-600 dark:text-stone-400 opacity-0 animate-fadeIn"
-          style={{
-            fontSize: "18px",
-            animationDelay: "100ms",
-            animationFillMode: "forwards",
-          }}
+          className={`
+            font-light text-stone-600 dark:text-stone-400 text-lg
+            opacity-0 animate-fadeIn-mobile md:animate-fadeIn-desktop
+            motion-reduce:opacity-100 motion-reduce:animate-none
+          `}
         >
           I&apos;m an{" "}
           <span className="font-medium text-stone-900 dark:text-white">

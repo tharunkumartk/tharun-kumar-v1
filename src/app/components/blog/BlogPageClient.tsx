@@ -91,7 +91,11 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                         e.stopPropagation();
                         handleFilterToggle();
                       }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 text-sm bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors opacity-0 animate-fadeIn"
+                      style={{
+                        animationDelay: "200ms",
+                        animationFillMode: "forwards",
+                      }}
                     >
                       <svg
                         className="w-4 h-4"
@@ -115,7 +119,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                     {/* Filter Dropdown Menu */}
                     {openDropdown === "filter" && (
                       <div
-                        className="absolute top-full left-0 mt-2 w-96 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-lg shadow-lg z-50 flex flex-col max-h-96"
+                        className="absolute top-full left-0 mt-2 w-96 max-w-[80vw] bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-lg shadow-lg z-50 flex flex-col max-h-96 dropdown-enter"
                         onClick={(e) => e.stopPropagation()}
                       >
                         {/* Scrollable Content */}
@@ -158,7 +162,11 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                               handleClearFilters();
                               closeDropdown();
                             }}
-                            className="text-sm text-stone-900 dark:text-stone-300 hover:text-stone-700 dark:hover:text-white transition-colors"
+                            className="text-sm text-stone-900 dark:text-stone-300 hover:text-stone-700 dark:hover:text-white transition-colors opacity-0 animate-fadeIn"
+                            style={{
+                              animationDelay: "200ms",
+                              animationFillMode: "forwards",
+                            }}
                           >
                             Clear all
                           </button>
@@ -195,7 +203,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                     {/* Sort Dropdown Menu */}
                     {openDropdown === "sort" && (
                       <div
-                        className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-lg shadow-lg z-50"
+                        className="absolute top-full left-0 mt-2 w-56 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-700 rounded-lg shadow-lg z-50 dropdown-enter"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <div className="p-3">
@@ -228,14 +236,23 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                   </div>
                 </div>
 
-                <ViewToggle
-                  viewMode={viewMode}
-                  onViewChange={handleViewChange}
-                />
+                {/* Only show view toggle on desktop */}
+                <div className="hidden md:block">
+                  <ViewToggle
+                    viewMode={viewMode}
+                    onViewChange={handleViewChange}
+                  />
+                </div>
               </div>
 
               {/* Filter Status */}
-              <div className="mt-4">
+              <div
+                className="mt-4 opacity-0 animate-fadeIn"
+                style={{
+                  animationDelay: "250ms",
+                  animationFillMode: "forwards",
+                }}
+              >
                 <p className="text-sm text-stone-600 dark:text-stone-400">
                   {filteredAndSortedPosts.length} of {posts.length} posts
                 </p>
@@ -261,29 +278,15 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
               </div>
             ) : (
               <>
-                {viewMode === "grid" ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    {filteredAndSortedPosts.map((post, index) => (
-                      <div
-                        key={post.slug + index}
-                        className="opacity-0 animate-fadeIn"
-                        style={{
-                          animationDelay: `${200 + index * 100}ms`,
-                          animationFillMode: "forwards",
-                        }}
-                      >
-                        <BlogPostCardVertical post={post} />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
+                {/* On mobile, always show list view. On desktop, respect viewMode */}
+                <div className="md:hidden">
                   <div className="space-y-6 mb-16">
                     {filteredAndSortedPosts.map((post, index) => (
                       <div
                         key={post.slug + index}
                         className="opacity-0 animate-fadeIn"
                         style={{
-                          animationDelay: `${200 + index * 100}ms`,
+                          animationDelay: `${300 + index * 100}ms`,
                           animationFillMode: "forwards",
                         }}
                       >
@@ -291,7 +294,42 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                       </div>
                     ))}
                   </div>
-                )}
+                </div>
+
+                {/* Desktop view - respect viewMode setting */}
+                <div className="hidden md:block">
+                  {viewMode === "grid" ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                      {filteredAndSortedPosts.map((post, index) => (
+                        <div
+                          key={post.slug + index}
+                          className="opacity-0 animate-fadeIn"
+                          style={{
+                            animationDelay: `${300 + index * 100}ms`,
+                            animationFillMode: "forwards",
+                          }}
+                        >
+                          <BlogPostCardVertical post={post} />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="space-y-6 mb-16">
+                      {filteredAndSortedPosts.map((post, index) => (
+                        <div
+                          key={post.slug + index}
+                          className="opacity-0 animate-fadeIn"
+                          style={{
+                            animationDelay: `${300 + index * 100}ms`,
+                            animationFillMode: "forwards",
+                          }}
+                        >
+                          <BlogPostCardHorizontalLong post={post} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </>
             )}
           </div>
