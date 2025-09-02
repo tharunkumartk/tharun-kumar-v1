@@ -182,7 +182,11 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                         e.stopPropagation();
                         handleSortToggle();
                       }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 text-sm bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors opacity-0 animate-fadeIn"
+                      style={{
+                        animationDelay: "225ms",
+                        animationFillMode: "forwards",
+                      }}
                     >
                       <svg
                         className="w-4 h-4"

@@ -8,7 +8,7 @@ export default function BlogPostCardHorizontalLong({
 }: BlogPostCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block w-full">
-      <div className="flex flex-col md:flex-row w-full p-6 rounded-lg transition-colors duration-300 hover:bg-stone-100 dark:hover:bg-stone-800/50">
+      <div className="flex flex-col md:flex-row w-full py-6 rounded-lg transition-colors duration-300 hover:bg-stone-100 dark:hover:bg-stone-800/50">
         {/* Image */}
         <div className="relative w-full md:w-48 h-32 md:h-36 rounded-lg overflow-hidden flex-shrink-0 mb-4 md:mb-0 md:mr-6">
           <Image

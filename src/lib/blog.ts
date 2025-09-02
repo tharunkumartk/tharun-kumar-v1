@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { cache } from "react";
 import { BlogPost, postsDirectory } from "./types";
+import { transformImageUrl } from "./utils";
 
 export const getBlogPosts = cache((directory: string): BlogPost[] => {
   // Get file names under /content/blog
@@ -30,7 +31,7 @@ export const getBlogPosts = cache((directory: string): BlogPost[] => {
         title: matterResult.data.title,
         timestamp: matterResult.data.timestamp,
         tags: matterResult.data.tags,
-        imageUrl: matterResult.data.imageUrl,
+        imageUrl: transformImageUrl(matterResult.data.imageUrl),
         summary: matterResult.data.summary,
         content: matterResult.content,
       } as BlogPost;
@@ -66,7 +67,7 @@ export const getBlogPost = cache(
         title: matterResult.data.title,
         timestamp: matterResult.data.timestamp,
         tags: matterResult.data.tags,
-        imageUrl: matterResult.data.imageUrl,
+        imageUrl: transformImageUrl(matterResult.data.imageUrl),
         summary: matterResult.data.summary,
         content: matterResult.content,
       } as BlogPost;

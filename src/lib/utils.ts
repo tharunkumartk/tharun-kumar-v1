@@ -37,3 +37,44 @@ export function formatDate(timestamp: string): string {
     year: "numeric",
   });
 }
+
+// CDN configuration
+export const CDN_BASE_URL =
+  "https://ydfksaipdlqazgcsrdlm.supabase.co/storage/v1/object/public/web-images";
+
+/**
+ * Transforms local image URLs to CDN URLs
+ * @param imageUrl - The original image URL (can be relative or absolute)
+ * @returns The transformed CDN URL
+ */
+export function transformImageUrl(imageUrl: string): string {
+  if (!imageUrl) return imageUrl;
+
+  // If it's already a full URL (http/https), return as-is
+  if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+    return imageUrl;
+  }
+
+  // Remove leading slash if present
+  const cleanPath = imageUrl.startsWith("/") ? imageUrl.slice(1) : imageUrl;
+
+  // Combine CDN base URL with the image path
+  return `${CDN_BASE_URL}/${cleanPath}`;
+}
+
+/**
+ * Transforms all image URLs in markdown content to use CDN
+ * @param content - The markdown content
+ * @returns The content with transformed image URLs
+ */
+export function transformMarkdownImages(content: string): string {
+  if (!content) return content;
+
+  // Regex to match markdown image syntax: ![alt](url)
+  const imageRegex = /!\[([^\]]*)\]\(([^)]+)\)/g;
+
+  return content.replace(imageRegex, (match, alt, url) => {
+    const transformedUrl = transformImageUrl(url);
+    return `![${alt}](${transformedUrl})`;
+  });
+}

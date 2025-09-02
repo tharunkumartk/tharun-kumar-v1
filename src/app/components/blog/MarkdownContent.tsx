@@ -7,6 +7,7 @@ import rehypeKatex from "rehype-katex";
 // import Image from "next/image";
 import "highlight.js/styles/github-dark.css";
 import "katex/dist/katex.min.css";
+import { transformImageUrl } from "@/lib/utils";
 
 interface MarkdownContentProps {
   content: string;
@@ -200,12 +201,15 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           // Images
           img: ({ src, alt }) => {
             const altText = alt || "Markdown image";
+            const transformedSrc = transformImageUrl(
+              (src as string) || "/images/blog/blog-1.jpeg"
+            );
             return (
               <div className="my-8">
                 {/* Use a plain img to avoid any SSR/client mismatch from Next/Image runtime logic in MD */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={(src as string) || "/images/blog/blog-1.jpeg"}
+                  src={transformedSrc}
                   alt={altText}
                   className="rounded-lg shadow-lg w-full object-cover"
                 />
