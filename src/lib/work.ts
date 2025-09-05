@@ -6,6 +6,20 @@ import { WorkExperience } from "./types";
 
 const workDirectory = path.join(process.cwd(), "content/work");
 
+// Function to convert basic markdown to HTML (for simple formatting like line breaks)
+function processMarkdownToHtml(markdown: string): string {
+  if (!markdown) return "";
+
+  // Convert double line breaks to paragraph breaks
+  // Convert single line breaks to <br> tags
+  return markdown
+    .trim()
+    .split("\n\n")
+    .map((paragraph) => paragraph.replace(/\n/g, "<br>"))
+    .map((paragraph) => `<p>${paragraph}</p>`)
+    .join("");
+}
+
 export const getAllWorkExperiences = cache((): WorkExperience[] => {
   // Get file names under /content/work
   const fileNames = fs.readdirSync(workDirectory);
@@ -32,7 +46,7 @@ export const getAllWorkExperiences = cache((): WorkExperience[] => {
         companyUrl: matterResult.data.companyUrl,
         skills: matterResult.data.skills,
         order: matterResult.data.order || 999,
-        content: matterResult.content,
+        content: processMarkdownToHtml(matterResult.content),
       } as WorkExperience;
     });
 
@@ -69,7 +83,7 @@ export const getWorkExperience = cache(
         companyUrl: matterResult.data.companyUrl,
         skills: matterResult.data.skills,
         order: matterResult.data.order || 999,
-        content: matterResult.content,
+        content: processMarkdownToHtml(matterResult.content),
       } as WorkExperience;
     } catch (error) {
       console.error(`Error reading work experience ${slug}:`, error);

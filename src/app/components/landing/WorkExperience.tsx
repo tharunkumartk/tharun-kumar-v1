@@ -31,7 +31,7 @@ const WorkExperienceCard = ({ experience }: WorkExperienceProps) => {
           {/* Content */}
           <div className="mb-4">
             <div
-              className="text-stone-700 dark:text-stone-300 leading-relaxed prose prose-sm max-w-none prose-stone dark:prose-invert"
+              className="text-stone-700 dark:text-stone-300 leading-relaxed prose prose-sm max-w-none prose-stone dark:prose-invert [&>p]:mb-4 [&>p:last-child]:mb-0"
               dangerouslySetInnerHTML={{ __html: experience.content }}
             />
           </div>
