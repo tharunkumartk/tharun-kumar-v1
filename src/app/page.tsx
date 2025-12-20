@@ -4,7 +4,7 @@ import WorkExperienceColumn from "./components/landing/WorkExperienceColumn";
 import Navbar from "./components/landing/Navbar";
 import SocialIcons from "./components/landing/SocialIcons";
 import ScrollDetector from "./components/landing/ScrollDetector";
-import BlogColumn from "./components/landing/BlogColumn";
+// import BlogColumn from "./components/landing/BlogColumn";
 import ProjectColumn from "./components/landing/ProjectColumn";
 import MeetingNewPeopleColumn from "./components/landing/MeetingNewPeopleColumn";
 import FooterColumn from "./components/landing/FooterColumn";
