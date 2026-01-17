@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { T, Branch, useGT } from "gt-next";
 
 const MeetingNewPeopleColumn = () => {
   const [copied, setCopied] = useState(false);
   const resetCopyTimeoutRef = useRef<number | null>(null);
   const emailAddress = "tharuntk@princeton.edu";
+  const gt = useGT();
 
   const copyEmailToClipboard = async () => {
     // Clear any existing timers so repeated clicks keep state visible
@@ -51,30 +53,38 @@ const MeetingNewPeopleColumn = () => {
     >
       {/* Removed toast in favor of inline button state */}
       <div className="">
-        <p
-          className="font-light text-stone-600 dark:text-stone-400 opacity-0 animate-fadeIn"
-          style={{
-            fontSize: "18px",
-            animationDelay: "100ms",
-            animationFillMode: "forwards",
-          }}
-        >
-          <span className="font-medium text-stone-900 dark:text-white">
-            I love meeting new people.
-          </span>{" "}
-          {/* <br />
+        <T>
+          <p
+            className="font-light text-stone-600 dark:text-stone-400 opacity-0 animate-fadeIn"
+            style={{
+              fontSize: "18px",
+              animationDelay: "100ms",
+              animationFillMode: "forwards",
+            }}
+          >
+            <span className="font-medium text-stone-900 dark:text-white">
+              I love meeting new people.
+            </span>{" "}
+            {/* <br />
           <br /> */}
-          Feel free to reach out if you have questions or just want to chat :)
-        </p>
+            Feel free to reach out if you have questions or just want to chat :)
+          </p>
+        </T>
         <div className="mt-6 inline-flex items-center gap-3 rounded-md bg-stone-100 text-stone-900 dark:bg-stone-800 dark:text-stone-100 border border-stone-200 dark:border-stone-700 shadow-inner px-4 py-2 text-sm font-medium">
           <span className="select-all">tharuntk (at) princeton (dot) edu</span>
           <button
             type="button"
             onClick={copyEmailToClipboard}
-            aria-label={copied ? "Email copied" : "Copy email address"}
+            aria-label={copied ? gt("Email copied") : gt("Copy email address")}
             className="inline-flex items-center justify-center rounded-md bg-stone-200 text-stone-900 dark:bg-stone-700 dark:text-stone-100 border border-stone-300 dark:border-stone-600 px-2 py-1 text-xs font-semibold transition-colors hover:bg-stone-300 dark:hover:bg-stone-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400 dark:focus-visible:ring-stone-500 active:translate-y-px"
           >
-            {copied ? "✓" : "Copy"}
+            <T>
+              <Branch
+                branch={copied.toString()}
+                true={<>✓</>}
+                false={<>Copy</>}
+              />
+            </T>
           </button>
         </div>
       </div>

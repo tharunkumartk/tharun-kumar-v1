@@ -8,6 +8,7 @@ import rehypeKatex from "rehype-katex";
 import "highlight.js/styles/github-dark.css";
 import "katex/dist/katex.min.css";
 import { transformImageUrl } from "@/lib/utils";
+import { T } from "gt-next";
 
 interface MarkdownContentProps {
   content: string;
@@ -122,15 +123,17 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
                     className="w-full rounded-lg shadow-lg my-8"
                   >
                     <source src={url} type={getMimeType(lowerUrl)} />
-                    Your browser does not support the video tag.{" "}
-                    <a
-                      href={url}
-                      className="text-blue-600 dark:text-blue-400 underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Download video
-                    </a>
+                    <T>
+                      Your browser does not support the video tag.{" "}
+                      <a
+                        href={url}
+                        className="text-blue-600 dark:text-blue-400 underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Download video
+                      </a>
+                    </T>
                   </video>
                   {caption && (
                     <span className="block text-center text-stone-500 dark:text-stone-400 text-sm -mt-6 mb-6 italic">

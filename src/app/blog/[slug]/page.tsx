@@ -6,6 +6,8 @@ import { estimateReadTime, formatDate } from "@/lib/utils";
 import BackButton from "@/app/components/blog/BackButton";
 import MarkdownContent from "@/app/components/blog/MarkdownContent";
 import FooterColumn from "@/app/components/landing/FooterColumn";
+import { T, Var } from "gt-next";
+import { getGT } from "gt-next/server";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -28,16 +30,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
+  const gt = await getGT();
+
   return (
     <main className="min-h-screen overflow-y-auto">
       <div className="max-w-4xl mx-auto px-8 md:px-12 lg:px-16 py-16 space-y-16">
         <div className="flex items-center justify-between mb-16">
-          <BackButton href="/blog" title="Blog" />
+          <BackButton href="/blog" title={gt("Blog")} />
         </div>
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-row text-xs sm:text-sm text-stone-600 dark:text-stone-400 space-x-4 mt-auto ">
             <span>{formatDate(postData.timestamp)}</span>
-            <span>{estimateReadTime(postData.content)} min read</span>
+            <span>
+              <T>
+                <Var>{estimateReadTime(postData.content)}</Var> min read
+              </T>
+            </span>
           </div>
           <h1
             className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
@@ -96,8 +104,9 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   }
 
   if (!postData) {
+    const gt = await getGT();
     return {
-      title: "Blog Post Not Found",
+      title: gt("Blog Post Not Found"),
     };
   }
 

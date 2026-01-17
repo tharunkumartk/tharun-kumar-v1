@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { T, useGT } from "gt-next";
 
 const Hero = () => {
-  const phrases = ["Senior at Princeton University"];
+  const gt = useGT();
+  const phrases = [gt("Senior at Princeton University")];
   const blurbs = [
-    "I'm a research engineer interested in training large models to reason about the world.",
+    gt("I'm a research engineer interested in training large models to reason about the world."),
   ];
   return (
     <div className="flex flex-col justify-start items-start">
@@ -15,7 +17,7 @@ const Hero = () => {
           animationFillMode: "forwards",
         }}
       >
-        Tharun Kumar
+        <T>Tharun Kumar</T>
       </h1>
       <div
         className="font-regular transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
@@ -49,7 +51,7 @@ const Hero = () => {
           animationFillMode: "forwards",
         }}
       >
-        Check out my blog!
+        <T>Check out my blog!</T>
       </Link>
     </div>
   );

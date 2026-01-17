@@ -1,3 +1,15 @@
 {
-  "locadexModifiedAt": 1768607723098
+  "version": 1,
+  "entries": {
+    "brc_sjhav544fxu8ilrok0x9ws8a": {
+      "879f3a5f954ee8b75bf1e91f4ea9916b41c933e5beba7eb6362647a637c9c66d": {
+        "f88ee9018d25d3013af58c20083475c051536bbead8193ed8777dbb83659212e": {
+          "ta": {
+            "updatedAt": "2026-01-17T00:06:30.640Z",
+            "postProcessHash": "5c006456bdbb270fa8aa132e272e4cb6ea32748cc0800ed8aa0d0ddc4616ff23"
+          }
+        }
+      }
+    }
+  }
 }

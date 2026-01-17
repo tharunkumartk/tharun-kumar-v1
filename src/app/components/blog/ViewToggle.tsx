@@ -1,5 +1,7 @@
 "use client";
 
+import { useGT } from "gt-next";
+
 interface ViewToggleProps {
   viewMode: "grid" | "list";
   onViewChange: (view: "grid" | "list") => void;
@@ -9,6 +11,7 @@ export default function ViewToggle({
   viewMode,
   onViewChange,
 }: ViewToggleProps) {
+  const gt = useGT();
   const handleViewChange = (view: "grid" | "list") => {
     onViewChange(view);
   };
@@ -22,7 +25,7 @@ export default function ViewToggle({
             ? "bg-white dark:bg-stone-600 text-stone-900 dark:text-white shadow-sm"
             : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
         }`}
-        aria-label="List view"
+        aria-label={gt("List view")}
       >
         <svg
           width="16"
@@ -50,7 +53,7 @@ export default function ViewToggle({
             ? "bg-white dark:bg-stone-600 text-stone-900 dark:text-white shadow-sm"
             : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
         }`}
-        aria-label="Grid view"
+        aria-label={gt("Grid view")}
       >
         <svg
           width="16"

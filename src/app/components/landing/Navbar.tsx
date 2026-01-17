@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCurrentPage } from "@/app/components/landing/ScrollDetector";
-import { LocaleSelector } from "gt-next";
+import { LocaleSelector, useGT } from "gt-next";
 
 interface NavItem {
   label: string;
@@ -17,30 +17,31 @@ interface NavbarProps {
 const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
   const contextCurrentPage = useCurrentPage();
   const currentPage = contextCurrentPage || propCurrentPage || "";
+  const gt = useGT();
 
   const navItems: NavItem[] = [
     {
-      label: "ABOUT",
+      label: gt("ABOUT"),
       href: "/#about",
       isSelected: currentPage === "" || currentPage === "about",
     },
     {
-      label: "EXPERIENCE",
+      label: gt("EXPERIENCE"),
       href: "#experience",
       isSelected: currentPage === "experience",
     },
     {
-      label: "PROJECTS",
+      label: gt("PROJECTS"),
       href: "#projects",
       isSelected: currentPage === "projects",
     },
     // {
-    //   label: "BLOG",
+    //   label: gt("BLOG"),
     //   href: "/blog",
     //   isSelected: currentPage === "blog",
     // },
     {
-      label: "RESUME",
+      label: gt("RESUME"),
       href: "/resume.pdf",
       isSelected: currentPage === "resume",
     },
@@ -53,7 +54,7 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
         animationDelay: "400ms",
         animationFillMode: "forwards",
       }}
-      aria-label="Main site navigation"
+      aria-label={gt("Main site navigation")}
     >
       <div className="flex py-8">
         <div className="flex flex-col space-y-6">
