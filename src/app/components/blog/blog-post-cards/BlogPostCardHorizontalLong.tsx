@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlogPostCardProps } from "./BlogPostCardProps";
 import { formatDate, estimateReadTime } from "@/lib/utils";
+import { T, Var } from "gt-next";
 
 export default function BlogPostCardHorizontalLong({
   post,
@@ -37,7 +38,7 @@ export default function BlogPostCardHorizontalLong({
             <div className="flex items-center text-sm text-stone-600 dark:text-stone-400 space-x-4">
               <span>{formatDate(post.timestamp)}</span>
               <span className="hidden sm:inline">•</span>
-              <span>{estimateReadTime(post.content)} min read</span>
+              <T><span><Var>{estimateReadTime(post.content)}</Var> min read</span></T>
             </div>
 
             {/* Tags */}
@@ -52,9 +53,11 @@ export default function BlogPostCardHorizontalLong({
                   </span>
                 ))}
                 {post.tags.length > 3 && (
-                  <span className="px-2 py-1 text-xs bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 rounded-md">
-                    +{post.tags.length - 3}
-                  </span>
+                  <T>
+                    <span className="px-2 py-1 text-xs bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 rounded-md">
+                      +<Var>{post.tags.length - 3}</Var>
+                    </span>
+                  </T>
                 )}
               </div>
             )}

@@ -13,6 +13,7 @@ import {
   SORT_OPTIONS,
   ViewMode,
 } from "./blogHooks";
+import { T, useMessages, useGT } from "gt-next";
 
 interface BlogPageClientProps {
   posts: BlogPost[];
@@ -20,6 +21,8 @@ interface BlogPageClientProps {
 
 export default function BlogPageClient({ posts }: BlogPageClientProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("list");
+  const m = useMessages();
+  const gt = useGT();
 
   // Use custom hooks for filtering and dropdown state management
   const {
@@ -54,31 +57,33 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
         {/* Main Content */}
         <div className="max-w-6xl mx-auto px-8 md:px-12 lg:px-16 py-16 space-y-16">
           <div className="max-w-6xl mx-auto w-full">
-            <BackButton href="/" title="Home" />
+            <BackButton href="/" title={gt("Home")} />
 
             {/* Blog Header */}
             <div className="mb-12">
               <div className="text-center">
-                <h1
-                  className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn"
-                  style={{
-                    fontSize: "65px",
-                    animationDelay: "0ms",
-                    animationFillMode: "forwards",
-                  }}
-                >
-                  Blog
-                </h1>
-                <p
-                  className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
-                  style={{
-                    fontSize: "18px",
-                    animationDelay: "100ms",
-                    animationFillMode: "forwards",
-                  }}
-                >
-                  A collection of memories, projects, and dialogue
-                </p>
+<T>
+                  <h1
+                    className="font-regular text-stone-900 dark:text-stone-100 mb-2 opacity-0 animate-fadeIn"
+                    style={{
+                      fontSize: "65px",
+                      animationDelay: "0ms",
+                      animationFillMode: "forwards",
+                    }}
+                  >
+                    Blog
+                  </h1>
+                  <p
+                    className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
+                    style={{
+                      fontSize: "18px",
+                      animationDelay: "100ms",
+                      animationFillMode: "forwards",
+                    }}
+                  >
+                    A collection of memories, projects, and dialogue
+                  </p>
+                </T>
               </div>
 
               {/* Controls */}
@@ -110,7 +115,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
                         />
                       </svg>
-                      Topic
+                      <T>Topic</T>
                       <span className="ml-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 text-xs px-2 py-0.5 rounded-full">
                         {selectedTags.length}
                       </span>
@@ -127,7 +132,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           <div className="grid grid-cols-1 gap-4">
                             <div>
                               <h3 className="text-sm font-medium text-stone-900 dark:text-stone-300 mb-3">
-                                Topic
+                                <T>Topic</T>
                               </h3>
                               <div className="space-y-2">
                                 {allTags.map((tag) => {
@@ -168,7 +173,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                               animationFillMode: "forwards",
                             }}
                           >
-                            Clear all
+                            <T>Clear all</T>
                           </button>
                         </div>
                       </div>
@@ -201,7 +206,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
                         />
                       </svg>
-                      Sort
+                      <T>Sort</T>
                     </button>
 
                     {/* Sort Dropdown Menu */}
@@ -229,7 +234,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                                   className="w-4 h-4 text-blue-500 bg-white dark:bg-stone-800 border-stone-300 dark:border-stone-600 focus:ring-blue-500 focus:ring-2"
                                 />
                                 <span className="text-sm text-stone-900 dark:text-stone-300">
-                                  {option.label}
+                                  {m(option.label)}
                                 </span>
                               </label>
                             ))}
@@ -258,7 +263,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                 }}
               >
                 <p className="text-sm text-stone-600 dark:text-stone-400">
-                  {filteredAndSortedPosts.length} of {posts.length} posts
+                  {gt("{filtered} of {total} posts", { filtered: filteredAndSortedPosts.length, total: posts.length })}
                 </p>
               </div>
             </div>
@@ -268,15 +273,15 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
               <div className="text-center py-16">
                 <p className="text-stone-600 dark:text-stone-400 text-lg">
                   {selectedTags.length > 0
-                    ? "No posts found with the selected tags."
-                    : "No posts available."}
+                    ? gt("No posts found with the selected tags.")
+                    : gt("No posts available.")}
                 </p>
                 {selectedTags.length > 0 && (
                   <button
                     onClick={handleClearFilters}
                     className="mt-4 px-4 py-2 bg-stone-900 dark:bg-stone-100 text-white dark:text-stone-900 rounded-lg hover:bg-stone-800 dark:hover:bg-stone-200 transition-colors"
                   >
-                    Clear filters
+                    <T>Clear filters</T>
                   </button>
                 )}
               </div>

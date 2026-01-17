@@ -1,6 +1,7 @@
 import Link from "next/link";
 import BackButton from "./components/blog/BackButton";
 import FooterColumn from "./components/landing/FooterColumn";
+import { T } from "gt-next";
 
 export default function NotFound() {
   return (
@@ -33,7 +34,7 @@ export default function NotFound() {
                 animationFillMode: "forwards",
               }}
             >
-              Page Not Found
+              <T>Page Not Found</T>
             </h2>
             <p
               className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn max-w-2xl mx-auto"
@@ -43,32 +44,38 @@ export default function NotFound() {
                 animationFillMode: "forwards",
               }}
             >
-              It looks like you&apos;ve taken a wrong turn. This page
-              doesn&apos;t exist.
+              <T>
+                It looks like you&apos;ve taken a wrong turn. This page
+                doesn&apos;t exist.
+              </T>
             </p>
 
             {/* Navigation Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center rounded-md bg-stone-900 dark:bg-stone-100 px-4 py-2 text-sm font-medium text-white dark:text-stone-900 shadow transition-colors hover:bg-stone-800 dark:hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 dark:focus-visible:ring-stone-300 disabled:pointer-events-none disabled:opacity-50 opacity-0 animate-fadeIn"
-                style={{
-                  animationDelay: "300ms",
-                  animationFillMode: "forwards",
-                }}
-              >
-                Go to Home
-              </Link>
-              <Link
-                href="/blog"
-                className="inline-flex items-center justify-center rounded-md bg-stone-900 dark:bg-stone-100 px-4 py-2 text-sm font-medium text-white dark:text-stone-900 shadow transition-colors hover:bg-stone-800 dark:hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 dark:focus-visible:ring-stone-300 disabled:pointer-events-none disabled:opacity-50 opacity-0 animate-fadeIn"
-                style={{
-                  animationDelay: "400ms",
-                  animationFillMode: "forwards",
-                }}
-              >
-                Check out my blog!
-              </Link>
+              <T>
+                <Link
+                  href="/"
+                  className="inline-flex items-center justify-center rounded-md bg-stone-900 dark:bg-stone-100 px-4 py-2 text-sm font-medium text-white dark:text-stone-900 shadow transition-colors hover:bg-stone-800 dark:hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 dark:focus-visible:ring-stone-300 disabled:pointer-events-none disabled:opacity-50 opacity-0 animate-fadeIn"
+                  style={{
+                    animationDelay: "300ms",
+                    animationFillMode: "forwards",
+                  }}
+                >
+                  Go to Home
+                </Link>
+              </T>
+              <T>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center justify-center rounded-md bg-stone-900 dark:bg-stone-100 px-4 py-2 text-sm font-medium text-white dark:text-stone-900 shadow transition-colors hover:bg-stone-800 dark:hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 dark:focus-visible:ring-stone-300 disabled:pointer-events-none disabled:opacity-50 opacity-0 animate-fadeIn"
+                  style={{
+                    animationDelay: "400ms",
+                    animationFillMode: "forwards",
+                  }}
+                >
+                  Check out my blog!
+                </Link>
+              </T>
             </div>
           </div>
         </div>

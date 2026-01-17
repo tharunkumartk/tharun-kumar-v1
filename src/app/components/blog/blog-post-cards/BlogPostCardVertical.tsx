@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { BlogPostCardProps } from "./BlogPostCardProps";
 import { formatDate, estimateReadTime } from "@/lib/utils";
+import { T, Var } from "gt-next";
 
 export default function BlogPostCardVertical({ post }: BlogPostCardProps) {
   return (
@@ -25,7 +26,9 @@ export default function BlogPostCardVertical({ post }: BlogPostCardProps) {
 
           <div className="flex flex-row text-xs text-stone-600 dark:text-stone-400 space-x-4 mt-auto">
             <span>{formatDate(post.timestamp)}</span>
-            <span>{estimateReadTime(post.content)} min read</span>
+            <T>
+              <span><Var>{estimateReadTime(post.content)}</Var> min read</span>
+            </T>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { T } from "gt-next";
+
 const FooterColumn = () => {
   return (
     <div
@@ -13,39 +15,40 @@ const FooterColumn = () => {
             animationFillMode: "forwards",
           }}
         >
-          {
-            "Made with <3 by Tharun Kumar with Next.js and Tailwind using Cursor. Design inspiration from "
-          }
-          <a
-            href="https://brittanychiang.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
-          >
-            Brittany Chiang
-          </a>
-          {" and "}
-          <a
-            href="https://openai.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
-          >
-            OpenAI
-          </a>
-          .
-          <br />
-          <br />
-          View the source code on{" "}
-          <a
-            href="https://github.com/tharunkumartk/tharun-kumar-v1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
-          >
-            GitHub
-          </a>
-          .
+          <T>
+            Made with {"<3"} by Tharun Kumar with Next.js and Tailwind using
+            Cursor. Design inspiration from{" "}
+            <a
+              href="https://brittanychiang.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
+            >
+              Brittany Chiang
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://openai.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
+            >
+              OpenAI
+            </a>
+            .
+            <br />
+            <br />
+            View the source code on{" "}
+            <a
+              href="https://github.com/tharunkumartk/tharun-kumar-v1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-stone-600 dark:text-stone-600 underline hover:opacity-70"
+            >
+              GitHub
+            </a>
+            .
+          </T>
         </p>
       </div>
     </div>

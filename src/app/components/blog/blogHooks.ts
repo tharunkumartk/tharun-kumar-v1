@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { BlogPost } from "@/lib/types";
+import { msg } from "gt-next";
 
 // Type definitions
 export type SortOrder =
@@ -12,10 +13,10 @@ export type DropdownType = "filter" | "sort" | null;
 
 // Sort options configuration
 export const SORT_OPTIONS: Array<{ value: SortOrder; label: string }> = [
-  { value: "newest", label: "Newest → Oldest" },
-  { value: "oldest", label: "Oldest → Newest" },
-  { value: "alphabetical", label: "Alphabetical (A-Z)" },
-  { value: "reverse-alphabetical", label: "Alphabetical (Z-A)" },
+  { value: "newest", label: msg("Newest → Oldest") },
+  { value: "oldest", label: msg("Oldest → Newest") },
+  { value: "alphabetical", label: msg("Alphabetical (A-Z)") },
+  { value: "reverse-alphabetical", label: msg("Alphabetical (Z-A)") },
 ];
 
 // Custom hook for blog filtering and sorting
