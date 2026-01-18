@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import fs from "fs";
 import { getBlogPost } from "@/lib/blog";
 import { postsDirectory, projectsDirectory } from "@/lib/types";
 import { estimateReadTime, formatDate } from "@/lib/utils";
@@ -17,7 +18,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
 
   // First try to get the post from the blog directory
-  let postData = getBlogPost(slug, postsDirectory);
+  let postData = getBlogPost(slug, postsDirectory, {
+    suppressMissingWarning: true,
+  });
   if (!postData) {
     // If not found, try to get the post from the projects directory
     postData = getBlogPost(slug, projectsDirectory);
@@ -89,7 +92,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug, postsDirectory);
+  const post = getBlogPost(slug, postsDirectory, {
+    suppressMissingWarning: true,
+  });
   let postData = post;
   if (!post) {
     postData = getBlogPost(slug, projectsDirectory);
@@ -111,3 +116,21 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     },
   };
 }
+
+// Generate static params for all blog posts and projects at build time
+export async function generateStaticParams() {
+  const blogSlugs = fs
+    .readdirSync(postsDirectory)
+    .filter((name) => name.endsWith(".md"))
+    .map((name) => name.replace(/\.md$/, ""));
+
+  const projectSlugs = fs
+    .readdirSync(projectsDirectory)
+    .filter((name) => name.endsWith(".md"))
+    .map((name) => name.replace(/\.md$/, ""));
+
+  return [...blogSlugs, ...projectSlugs].map((slug) => ({ slug }));
+}
+
+// Revalidate pages every hour for ISR (Incremental Static Regeneration)
+export const revalidate = 3600;

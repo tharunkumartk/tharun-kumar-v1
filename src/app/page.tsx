@@ -9,6 +9,8 @@ import ProjectColumn from "./components/landing/ProjectColumn";
 import MeetingNewPeopleColumn from "./components/landing/MeetingNewPeopleColumn";
 import FooterColumn from "./components/landing/FooterColumn";
 
+export const dynamic = "force-static";
+
 export default function Home() {
   return (
     <ScrollDetector>

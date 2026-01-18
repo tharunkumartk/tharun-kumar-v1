@@ -49,11 +49,17 @@ export const getBlogPosts = cache((directory: string): BlogPost[] => {
 });
 
 export const getBlogPost = cache(
-  (slug: string, directory: string): BlogPost | null => {
+  (
+    slug: string,
+    directory: string,
+    options?: { suppressMissingWarning?: boolean }
+  ): BlogPost | null => {
     try {
       const fullPath = path.join(directory, `${slug}.md`);
       if (!fs.existsSync(fullPath)) {
-        console.warn(`Blog post file not found: ${fullPath}`);
+        if (!options?.suppressMissingWarning) {
+          console.warn(`Blog post file not found: ${fullPath}`);
+        }
         return null;
       }
       const fileContents = fs.readFileSync(fullPath, "utf8");

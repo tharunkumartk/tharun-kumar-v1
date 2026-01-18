@@ -18,3 +18,6 @@ export default function BlogPage() {
 
   return <BlogPageClient posts={sortedPosts} />;
 }
+
+// Revalidate every hour for ISR (Incremental Static Regeneration)
+export const revalidate = 3600;
