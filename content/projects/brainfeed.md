@@ -4,6 +4,7 @@ title: 'Contextual Bandits for Realtime News Personalization '
 imageUrl: '/images/project/brainfeed/brainfeed-logo.png'
 github: 'https://github.com/tharunkumartk/brainfeed-ios'
 blogSlug: 'brainfeed'
+featured: true
 tags:
   - Machine Learning
   - Recommendation Algorithms

@@ -41,20 +41,25 @@ export function useBlogFilters(posts: BlogPost[]) {
 
   // Memoize the sort function to avoid recreating on every render
   const sortFunction = useMemo(() => {
-    switch (sortOrder) {
-      case "newest":
-        return (a: BlogPost, b: BlogPost) =>
-          a.timestamp < b.timestamp ? 1 : -1;
-      case "oldest":
-        return (a: BlogPost, b: BlogPost) =>
-          a.timestamp > b.timestamp ? 1 : -1;
-      case "alphabetical":
-        return (a: BlogPost, b: BlogPost) => a.title.localeCompare(b.title);
-      case "reverse-alphabetical":
-        return (a: BlogPost, b: BlogPost) => b.title.localeCompare(a.title);
-      default:
-        return () => 0;
-    }
+    return (a: BlogPost, b: BlogPost) => {
+      // Always put featured posts at the top
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+
+      // Within featured/non-featured groups, apply selected sort order
+      switch (sortOrder) {
+        case "newest":
+          return a.timestamp < b.timestamp ? 1 : -1;
+        case "oldest":
+          return a.timestamp > b.timestamp ? 1 : -1;
+        case "alphabetical":
+          return a.title.localeCompare(b.title);
+        case "reverse-alphabetical":
+          return b.title.localeCompare(a.title);
+        default:
+          return 0;
+      }
+    };
   }, [sortOrder]);
 
   // Filter and sort posts

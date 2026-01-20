@@ -32,14 +32,23 @@ export const getBlogPosts = cache((directory: string): BlogPost[] => {
         timestamp: matterResult.data.timestamp,
         tags: matterResult.data.tags,
         imageUrl: transformImageUrl(matterResult.data.imageUrl),
+        previewImageUrl: matterResult.data.previewImageUrl
+          ? transformImageUrl(matterResult.data.previewImageUrl)
+          : undefined,
+        featured: matterResult.data.featured || false,
         summary: matterResult.data.summary,
         content: matterResult.content,
       } as BlogPost;
     })
     .filter((post): post is BlogPost => post !== null);
 
-  // Sort posts by timestamp (newest first)
+  // Sort posts by featured first, then by timestamp (newest first)
   return allPostsData.sort((a, b) => {
+    // If one is featured and the other isn't, featured one comes first
+    if (a.featured && !b.featured) return -1;
+    if (!a.featured && b.featured) return 1;
+
+    // Otherwise, sort by timestamp
     if (a.timestamp < b.timestamp) {
       return 1;
     } else {
@@ -74,6 +83,10 @@ export const getBlogPost = cache(
         timestamp: matterResult.data.timestamp,
         tags: matterResult.data.tags,
         imageUrl: transformImageUrl(matterResult.data.imageUrl),
+        previewImageUrl: matterResult.data.previewImageUrl
+          ? transformImageUrl(matterResult.data.previewImageUrl)
+          : undefined,
+        featured: matterResult.data.featured || false,
         summary: matterResult.data.summary,
         content: matterResult.content,
       } as BlogPost;
