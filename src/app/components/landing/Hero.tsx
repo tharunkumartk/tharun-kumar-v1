@@ -18,10 +18,10 @@ const Hero = () => {
         Tharun Kumar
       </h1>
       <div
-        className="font-regular transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
+        className="font-regular transition-opacity duration-[250ms] ease-in-out opacity-0 animate-fadeIn"
         style={{
           fontSize: "22px",
-          animationDelay: "100ms",
+          animationDelay: "50ms",
           animationFillMode: "forwards",
         }}
       >
@@ -30,10 +30,10 @@ const Hero = () => {
         </span>
       </div>
       <div
-        className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
+        className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-[250ms] ease-in-out opacity-0 animate-fadeIn"
         style={{
           fontSize: "18px",
-          animationDelay: "200ms",
+          animationDelay: "100ms",
           animationFillMode: "forwards",
         }}
       >
@@ -45,7 +45,7 @@ const Hero = () => {
         href="/blog"
         className="mt-6 inline-flex items-center justify-center rounded-md bg-stone-900 dark:bg-stone-100 px-4 py-2 text-sm font-medium text-white dark:text-stone-900 shadow transition-colors hover:bg-stone-800 dark:hover:bg-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-950 dark:focus-visible:ring-stone-300 disabled:pointer-events-none disabled:opacity-50 opacity-0 animate-fadeIn"
         style={{
-          animationDelay: "300ms",
+          animationDelay: "150ms",
           animationFillMode: "forwards",
         }}
       >

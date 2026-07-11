@@ -15,7 +15,7 @@ const WorkExperienceCard = ({ experience }: WorkExperienceProps) => {
       rel="noopener noreferrer"
       className="block"
     >
-      <div className="grid grid-cols-1 xl:grid-cols-[150px_1fr] gap-2 xl:gap-8 xl:p-4 xl:rounded-lg xl:transition-colors xl:duration-300 xl:hover:bg-stone-100 xl:dark:hover:bg-stone-800/50 xl:cursor-pointer">
+      <div className="grid grid-cols-1 xl:grid-cols-[150px_1fr] gap-2 xl:gap-8 xl:p-4 xl:rounded-lg xl:transition-colors xl:duration-150 xl:hover:bg-stone-100 xl:dark:hover:bg-stone-800/50 xl:cursor-pointer">
         {/* Date - left column on xl, or hidden if we use eyebrow on small screens */}
         <div className="hidden xl:block text-[11px] font-bold uppercase tracking-widest text-stone-400 dark:text-stone-500 mt-1.5">
           {dateRange}

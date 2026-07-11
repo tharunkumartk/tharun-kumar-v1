@@ -144,7 +144,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             return (
               <a
                 href={href}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium transition-colors duration-200"
+                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium transition-colors duration-100"
                 target="_blank"
                 rel="noopener noreferrer"
               >

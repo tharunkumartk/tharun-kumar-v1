@@ -55,7 +55,7 @@ const MeetingNewPeopleColumn = () => {
           className="font-light text-stone-600 dark:text-stone-400 opacity-0 animate-fadeIn"
           style={{
             fontSize: "18px",
-            animationDelay: "100ms",
+            animationDelay: "50ms",
             animationFillMode: "forwards",
           }}
         >

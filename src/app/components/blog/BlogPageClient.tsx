@@ -70,10 +70,10 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                   Blog
                 </h1>
                 <p
-                  className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn"
+                  className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-[250ms] ease-in-out opacity-0 animate-fadeIn"
                   style={{
                     fontSize: "18px",
-                    animationDelay: "100ms",
+                    animationDelay: "50ms",
                     animationFillMode: "forwards",
                   }}
                 >
@@ -93,7 +93,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                       }}
                       className="flex items-center gap-2 px-4 py-2 text-sm bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors opacity-0 animate-fadeIn"
                       style={{
-                        animationDelay: "200ms",
+                        animationDelay: "100ms",
                         animationFillMode: "forwards",
                       }}
                     >
@@ -164,7 +164,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                             }}
                             className="text-sm text-stone-900 dark:text-stone-300 hover:text-stone-700 dark:hover:text-white transition-colors opacity-0 animate-fadeIn"
                             style={{
-                              animationDelay: "200ms",
+                              animationDelay: "100ms",
                               animationFillMode: "forwards",
                             }}
                           >
@@ -184,7 +184,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                       }}
                       className="flex items-center gap-2 px-4 py-2 text-sm bg-stone-100 dark:bg-stone-800 text-stone-700 dark:text-stone-300 rounded-lg hover:bg-stone-200 dark:hover:bg-stone-700 transition-colors opacity-0 animate-fadeIn"
                       style={{
-                        animationDelay: "225ms",
+                        animationDelay: "112ms",
                         animationFillMode: "forwards",
                       }}
                     >
@@ -253,7 +253,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
               <div
                 className="mt-4 opacity-0 animate-fadeIn"
                 style={{
-                  animationDelay: "250ms",
+                  animationDelay: "125ms",
                   animationFillMode: "forwards",
                 }}
               >
@@ -290,7 +290,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                         key={post.slug + index}
                         className="opacity-0 animate-fadeIn"
                         style={{
-                          animationDelay: `${300 + index * 100}ms`,
+                          animationDelay: `${150 + index * 50}ms`,
                           animationFillMode: "forwards",
                         }}
                       >
@@ -309,7 +309,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           key={post.slug + index}
                           className="opacity-0 animate-fadeIn"
                           style={{
-                            animationDelay: `${300 + index * 100}ms`,
+                            animationDelay: `${150 + index * 50}ms`,
                             animationFillMode: "forwards",
                           }}
                         >
@@ -324,7 +324,7 @@ export default function BlogPageClient({ posts }: BlogPageClientProps) {
                           key={post.slug + index}
                           className="opacity-0 animate-fadeIn"
                           style={{
-                            animationDelay: `${300 + index * 100}ms`,
+                            animationDelay: `${150 + index * 50}ms`,
                             animationFillMode: "forwards",
                           }}
                         >

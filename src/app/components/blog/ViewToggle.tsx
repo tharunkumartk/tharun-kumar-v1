@@ -17,7 +17,7 @@ export default function ViewToggle({
     <div className="flex items-center space-x-1 bg-stone-200 dark:bg-stone-700 rounded-lg p-1">
       <button
         onClick={() => handleViewChange("list")}
-        className={`p-2 rounded-md transition-colors duration-200 ${
+        className={`p-2 rounded-md transition-colors duration-100 ${
           viewMode === "list"
             ? "bg-white dark:bg-stone-600 text-stone-900 dark:text-white shadow-sm"
             : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"
@@ -45,7 +45,7 @@ export default function ViewToggle({
 
       <button
         onClick={() => handleViewChange("grid")}
-        className={`p-2 rounded-md transition-colors duration-200 ${
+        className={`p-2 rounded-md transition-colors duration-100 ${
           viewMode === "grid"
             ? "bg-white dark:bg-stone-600 text-stone-900 dark:text-white shadow-sm"
             : "text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-white"

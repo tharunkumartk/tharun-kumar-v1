@@ -7,7 +7,7 @@ export default function BlogPostCardVertical({ post }: BlogPostCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block w-full h-full">
       <div
-        className={`flex flex-col h-full space-y-4 p-4 rounded-xl transition-colors duration-300 ${
+        className={`flex flex-col h-full space-y-4 p-4 rounded-xl transition-colors duration-150 ${
           post.featured
             ? "bg-stone-100/80 dark:bg-stone-800/40 border border-stone-200 dark:border-stone-700 hover:bg-stone-200/80 dark:hover:bg-stone-700/60"
             : "hover:bg-stone-100 dark:hover:bg-stone-800/50 border border-transparent"
@@ -19,7 +19,7 @@ export default function BlogPostCardVertical({ post }: BlogPostCardProps) {
             src={post.previewImageUrl || post.imageUrl}
             alt={post.title}
             fill
-            className="object-cover aspect-square transition-transform duration-300 group-hover:scale-115"
+            className="object-cover aspect-square transition-transform duration-150 group-hover:scale-115"
           />
         </div>
 
