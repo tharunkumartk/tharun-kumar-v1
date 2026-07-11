@@ -7,7 +7,7 @@ export default function BlogPostCardHorizontal({ post }: BlogPostCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block w-full h-full">
       <div
-        className={`flex flex-col xl:flex-row h-full space-y-4 xl:space-y-0 xl:p-4 xl:rounded-lg xl:transition-colors xl:duration-300 ${
+        className={`flex flex-col xl:flex-row h-full space-y-4 xl:space-y-0 xl:p-4 xl:rounded-lg xl:transition-colors xl:duration-150 ${
           post.featured
             ? "bg-stone-100/80 dark:bg-stone-800/40 border border-stone-200 dark:border-stone-700 xl:hover:bg-stone-200/80 xl:dark:hover:bg-stone-700/60"
             : "xl:hover:bg-stone-100 xl:dark:hover:bg-stone-800/50 border border-transparent"

@@ -9,7 +9,7 @@ const FooterColumn = () => {
           className="font-light text-stone-500 dark:text-stone-500 opacity-0 animate-fadeIn"
           style={{
             fontSize: "14px",
-            animationDelay: "100ms",
+            animationDelay: "50ms",
             animationFillMode: "forwards",
           }}
         >

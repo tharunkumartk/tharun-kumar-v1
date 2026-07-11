@@ -19,7 +19,7 @@ export default function ProjectColumn() {
           key={project.slug}
           className="opacity-0 animate-fadeIn"
           style={{
-            animationDelay: `${index * 100 + 200}ms`,
+            animationDelay: `${index * 50 + 100}ms`,
             animationFillMode: "forwards",
           }}
         >
@@ -30,17 +30,17 @@ export default function ProjectColumn() {
       <div
         className="flex mt-8 opacity-0 animate-fadeIn justify-start"
         style={{
-          animationDelay: `${2 * 200}ms`,
+          animationDelay: `${2 * 100}ms`,
           animationFillMode: "forwards",
         }}
       >
         <Link
           href="/blog"
-          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-stone-900 dark:text-stone-100 bg-transparent  dark:border-stone-600 rounded-md  dark:hover:border-stone-500 transition-all duration-200 ease-in-out"
+          className="group inline-flex items-center justify-center px-6 py-3 text-md font-medium text-stone-900 dark:text-stone-100 bg-transparent  dark:border-stone-600 rounded-md  dark:hover:border-stone-500 transition-all duration-100 ease-in-out"
         >
           View All
           <svg
-            className="ml-2 w-4 h-4 transition-transform duration-200 ease-in-out group-hover:translate-x-1"
+            className="ml-2 w-4 h-4 transition-transform duration-100 ease-in-out group-hover:translate-x-1"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

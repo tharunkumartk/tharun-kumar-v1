@@ -49,7 +49,7 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
     <nav
       className="z-50 bg-transparent opacity-0 animate-fadeIn"
       style={{
-        animationDelay: "400ms",
+        animationDelay: "200ms",
         animationFillMode: "forwards",
       }}
       aria-label="Main site navigation"
@@ -65,7 +65,7 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
               {/* Line indicator */}
               <div className="relative mr-4 w-12">
                 <div
-                  className={`h-px bg-black dark:bg-white transition-all duration-300 ease-out origin-left ${
+                  className={`h-px bg-black dark:bg-white transition-all duration-150 ease-out origin-left ${
                     item.isSelected ? "w-12" : "w-6 group-hover:w-12"
                   }`}
                 />
@@ -73,7 +73,7 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
 
               {/* Text */}
               <span
-                className={`text-sm font-medium tracking-wide transition-all duration-300 ${
+                className={`text-sm font-medium tracking-wide transition-all duration-150 ${
                   item.isSelected
                     ? "text-black dark:text-white opacity-100"
                     : "text-black dark:text-white opacity-60 group-hover:opacity-100"

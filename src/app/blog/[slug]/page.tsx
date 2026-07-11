@@ -52,10 +52,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {postData.title}
           </h1>
           <div
-            className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-500 ease-in-out opacity-0 animate-fadeIn text-center max-w-3xl "
+            className="mt-4 text-stone-600 dark:text-stone-400 transition-opacity duration-[250ms] ease-in-out opacity-0 animate-fadeIn text-center max-w-3xl "
             style={{
               fontSize: "18px",
-              animationDelay: "200ms",
+              animationDelay: "100ms",
               animationFillMode: "forwards",
             }}
           >
@@ -70,7 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             height={400}
             className="rounded-xl flex-shrink-0 w-full h-[400px] object-cover opacity-0 animate-fadeIn"
             style={{
-              animationDelay: "400ms",
+              animationDelay: "200ms",
               animationFillMode: "forwards",
             }}
           />
@@ -78,7 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div
           className="opacity-0 animate-fadeIn"
           style={{
-            animationDelay: "600ms",
+            animationDelay: "300ms",
             animationFillMode: "forwards",
           }}
         >
