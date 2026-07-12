@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCurrentPage } from "@/app/components/landing/ScrollDetector";
+import { LocaleSelector } from "gt-next";
 
 interface NavItem {
   label: string;
@@ -83,6 +84,9 @@ const Navbar = ({ currentPage: propCurrentPage }: NavbarProps) => {
               </span>
             </Link>
           ))}
+          <div className="mt-4">
+            <LocaleSelector />
+          </div>
         </div>
       </div>
     </nav>
